@@ -45,9 +45,9 @@ class TableTheDistrict extends Fixture
         $plat1->setPrix(8.00);
         $plat1->setDescription('Burger composé d’un bun’s du boulanger, deux steaks de 80g (origine française), de deux tranches poitrine de porc fumée, de deux tranches cheddar affiné, salade et oignons confits.');
         $plat1->setActive(1);
-        $plat1->setcommandes($cat1);
+        $plat1->setCategorie($cat1);
 
-        $manager->persist($cat1);
+        $manager->persist($plat1);
 
         $plat2 = new Plat();
         $plat2->setLibelle('Cheeseburger');
@@ -55,7 +55,9 @@ class TableTheDistrict extends Fixture
         $plat2->setPrix(8.00);
         $plat2->setDescription('Burger composé d’un bun’s du boulanger,de salade,oignons rouges, pickles,oignon confit,tomate,d’un steak d’origine Française,d’une tranche de cheddar affiné, et de notre sauce maison.');
         $plat2->setActive(1);
-        $plat2->setcommandes($cat1);
+        $plat2->setCategorie($cat1);
+
+        $manager->persist($plat2);
 
         $plat3 = new Plat();
         $plat3->setLibelle('Pizza Bianca');
@@ -63,7 +65,9 @@ class TableTheDistrict extends Fixture
         $plat3->setPrix(14.00);
         $plat3->setDescription('Une pizza fine et croustillante garnie de crème mascarpone légèrement citronnée et de tranches de saumon fumé, le tout relevé de baies roses et de basilic frais.');
         $plat3->setActive(1);
-        $plat3->setcommandes($cat3);
+        $plat3->setCategorie($cat3);
+
+        $manager->persist($plat3);
 
         $plat4 = new Plat();
         $plat4->setLibelle('Pizza Margherita');
@@ -71,7 +75,9 @@ class TableTheDistrict extends Fixture
         $plat4->setPrix(14.00);
         $plat4->setDescription('Une authentique pizza margarita, un classique de la cuisine italienne! Une pâte faite maison, une sauce tomate fraîche, de la mozzarella Fior di latte, du basilic, origan, ail, sucre, sel & poivre...');
         $plat4->setActive(1);
-        $plat4->setcommandes($cat3);
+        $plat4->setCategorie($cat3);
+
+        $manager->persist($plat4);
 
         $plat5 = new Plat();
         $plat5->setLibelle('Tagliatelles au saumon');
@@ -79,7 +85,9 @@ class TableTheDistrict extends Fixture
         $plat5->setPrix(12.00);
         $plat5->setDescription('Découvrez notre recette délicieuse de tagliatelles au saumon frais et à la crème qui qui vous assure un véritable régal!');
         $plat5->setActive(1);
-        $plat5->setcommandes($cat2);
+        $plat5->setCategorie($cat2);
+
+        $manager->persist($plat5);
 
         $user1 = new Utilisateur();
         $user1->setEmail('yop@gmail.com');
@@ -92,6 +100,8 @@ class TableTheDistrict extends Fixture
         $user1->setVille('Amiens');
         $user1->setRoles('admin');
 
+        $manager->persist($user1);
+
         $user2 = new Utilisateur();
         $user2->setEmail('cacao@yahoo.com');
         $user2->setPassword('cacao');
@@ -103,34 +113,44 @@ class TableTheDistrict extends Fixture
         $user2->setVille('Amiens');
         $user2->setRoles('user');
 
+        $manager->persist($user2);
+
         $commande1 = new Commande();
         $commande1->setDateCommande(new \DatetimeImmutable());
         $commande1->setTotal(14.00);
         $commande1->setEtat(3);
-        $commande1->setUtilisateur($user1->getId());
+        $commande1->setUtilisateurs($user1);
+
+        $manager->persist($commande1);
 
         $commande2 = new Commande();
         $commande2->setDateCommande(new \DatetimeImmutable());
         $commande2->setTotal($plat1->getPrix() + $plat5->getPrix());
         $commande2->setEtat(2);
-        $commande2->setUtilisateur($user2->getId());
+        $commande2->setUtilisateurs($user2);
+
+        $manager->persist($commande2);
 
         $detail1 = new Detail();
         $detail1->setQuantite(1);
         $detail1->setCommandes($commande1);
         $detail1->setPlats($plat3);
 
+        $manager->persist($detail1);
+
         $detail2 = new Detail();
         $detail2->setQuantite(1);
         $detail2->setCommandes($commande2);
         $detail2->setPlats($plat1);
+
+        $manager->persist($detail2);
 
         $detail3 = new Detail();
         $detail3->setQuantite(1);
         $detail3->setCommandes($commande2);
         $detail3->setPlats($plat5);
 
-        $manager->persist($user1);
+        $manager->persist($detail3);
 
         $manager->flush();
     }

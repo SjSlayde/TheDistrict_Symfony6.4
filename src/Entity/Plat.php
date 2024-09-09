@@ -110,12 +110,12 @@ class Plat
         return $this;
     }
 
-    public function getcategorie(): ?Categorie
+    public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
 
-    public function setcategorie(?Categorie $categorie): static
+    public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
 

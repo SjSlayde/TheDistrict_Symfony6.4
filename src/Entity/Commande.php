@@ -31,14 +31,9 @@ class Commande
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'commandes')]
     private Collection $details;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'commandes')]
-    private ?self $utilisateur = null;
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?Utilisateur $utilisateur = null;
 
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'utilisateur')]
-    private Collection $commandes;
 
     public function __construct()
     {
@@ -117,14 +112,9 @@ class Commande
         return $this;
     }
 
-    public function getUtilisateur(): ?self
+    public function setUtilisateurs(?Utilisateur $utilisateur): static
     {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?self $utilisateur): static
-    {
-        $this->utilisateur = $utilisateur;
+            $this->utilisateur = $utilisateur;
 
         return $this;
     }
@@ -132,30 +122,10 @@ class Commande
     /**
      * @return Collection<int, self>
      */
-    public function getCommandes(): Collection
+
+    public function getUtilisateur(): ?Utilisateur
     {
-        return $this->commandes;
+        return $this->utilisateur;
     }
 
-    public function addCommande(self $commande): static
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes->add($commande);
-            $commande->setUtilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(self $commande): static
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getUtilisateur() === $this) {
-                $commande->setUtilisateur(null);
-            }
-        }
-
-        return $this;
-    }
 }
