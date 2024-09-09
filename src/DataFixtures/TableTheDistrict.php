@@ -117,7 +117,7 @@ class TableTheDistrict extends Fixture
 
         $commande1 = new Commande();
         $commande1->setDateCommande(new \DatetimeImmutable());
-        $commande1->setTotal(14.00);
+        $commande1->setTotal($plat3->getPrix());
         $commande1->setEtat(3);
         $commande1->setUtilisateurs($user1);
 
