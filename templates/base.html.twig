@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="shortcut icon" type="image/png" href="{{ asset ('img/the_district_brand/favicon.png')}}"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         {% block stylesheets %}
         {% endblock %}
@@ -11,9 +11,79 @@
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
-    </head>
+            </head>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+                    <a class="navbar-brand" href="#"><img src="{{ asset ('img/the_district_brand/logo.png') }}" width="50" class="d-inline-block align-text-top" alt="navicon"></a>
+                    
+                    <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+                <div class='jutify-content-center'>
+                <ul class="navbar-nav">
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_index' ? 'active' : ''}}" href="{{ path ('app_index') }}" title="Accueil">Accueil</a>
+                        </li>
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_category' ? 'active' : ''}}" href="{{ path ('app_category') }}" title="Categorie">Categorie</a>
+                        </li>
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_dish' ? 'active' : ''}}" href="{{ path ('app_dish') }}" title="Plat">Plat</a>
+                        </li>
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">contact</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+            <div id="parent">
+                <div id="banniere" class="row g-0">
+                    <video id="video" class="col-12" src="{{ asset ('img/video/video_the_district.webm') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
+                </div>
+                <div id="recherche" class="d-none d-sm-flex">
+                    <form class="col-12" action="script/script_recherche.php" role="search">
+                        <input class="form-control me-2" type="search" name="recherche" placeholder="Recherche..." aria-label="Search">
+                    </form>
+                </div>
+            </div>
     <body>
+
         {% block body %}{% endblock %}
+
+        <footer class="p-0 g-0">
+                    <nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
+                        <div class="collapse navbar-collapse justify-content-center row" id="collapsibleNavbar2">
+                            <ul class="navbar-nav col-12 justify-content-center mx-xl-2">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" title="Accueil"><img src="{{ asset ('img/social_media/icons8-facebook-48.png')}}" class="img-fluid align-text-top" alt="navinsta"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" title="Categorie"><img src="{{ asset ('img/social_media/icons8-instagram-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navfb"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" title="Plat"><img src="{{ asset ('img/social_media/icons8-tiktok-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navtt"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" title="contact"><img src="{{ asset ('img/social_media/icons8-twitter-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navx"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" title="contact"><img src="{{ asset ('img/social_media/icons8-youtube-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="mention_legales.php" title="mention_legales"><img src="{{ asset ('img/social_media/icons8-mention-legales-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="politique_de_confidentialité.php" title="politique_de_confidentialité"><img src="{{ asset ('img/social_media/icons8-politique-de-confidentialité-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </footer>
+                
+    
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

@@ -1,20 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CatalogueController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block body %}  
+    <div class="container-fluid g-0 row">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="col-2 p-0 d-md-none d-lg-block parallax"></div>
+    
+        <div class="col-8">
+            
+            <div class="row justify-content-center mt-3">
+            
+                <div class="fs-1 col-12 ms-md-5">Les Categories Favorites :</div>
+                
+                <div class="row">
+                
+                    {% for categorie in category %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/benj_/Documents/code/TheDistrict/src/Controller/CatalogueController.php</code></li>
-        <li>Your template at <code>C:/Users/benj_/Documents/code/TheDistrict/templates/catalogue/index.html.twig</code></li>
-    </ul>
+                    <div class="col-12 col-sm-6 col-md-4 mt-3">
+
+                    <div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto">
+                        <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="plat.php?numcat='{{ categorie.id }}'">
+                            <img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top imagecat" alt="{{ categorie.libelle }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ categorie.libelle | upper }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+                </div>
+
+                 <div class="row justify-content-center mt-3">
+                 <h2 class="fs-1 col-12 ms-md-5">Nos plats star :</h2>
+                <div class="row">
+
+                 {% for plats in plat %}
+
+                <div class="col-12 col-sm-6 col-md-4 mt-3">
+
+                    <div class="card mx-auto">
+                        <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="commande.php?platcom={{ plats.id }}">
+                            <img src="{{ asset ('img/food/' ~ plats.image) }}" class="card-img-top imagecat" alt="{{ plats.libelle }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ plats.libelle }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                 {% endfor %}
+
+                </div>
+                </div>
+                </div>
+
+           
+            <div class="col-2 p-0 d-md-none d-lg-block parallax"></div>
 </div>
+
+
 {% endblock %}

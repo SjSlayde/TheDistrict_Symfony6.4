@@ -1,3 +1,181 @@
+
 body {
-    background-color: skyblue;
-}
+    font-family: Arial, "Times New Roman", sans-serif;
+    width: 100vw;
+    background: rgb(245,126,126);
+    background: linear-gradient(90deg, rgba(245,126,126,1) 0%, rgba(240,173,158,1) 30%, rgba(239,181,163,1) 50%, rgba(240,170,156,1) 70%, rgba(245,126,126,1) 100%); 
+    }
+
+    #parent {
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /*horizontal*/
+
+    grid-template-rows: 0.5fr  0,6fr ;
+    /*vertical*/
+
+    grid-column-gap: 0px;
+
+    grid-row-gap: 0px;
+    
+    }
+
+    #banniere {
+        grid-area: 2 / 1 / 3 / 6; }
+
+    #recherche { grid-area: 2 / 3 / 3 / 4;
+                margin-top: 10vw; }
+               
+                .imagecat {
+                    margin-top: 5px;
+                    padding: 0;
+                    border-radius: 45%;
+                    border: 4px solid #315F72;
+                    width: 18vw;
+                    height: 25vh;
+                }
+            
+                .imageplat {
+                    margin-top: 5px;
+                    padding: 0;
+                    border-radius: 16%;
+                    border: 4px solid #315F72;
+                    width: 18vw;
+                    height: 15vh;
+                }
+    #video {
+        width: 100%;
+        object-fit: fill;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    #navbot{
+        width: 30vw;
+        background-color: #315F72;
+    }
+    
+    button{ border: #315F72 1px solid;
+        color: #315F72;
+    }
+
+    .color-315F72 {
+        background-color:#315F72;
+    }
+
+
+    .textnav{
+        font-size: 30px;
+        font-family: cursive;
+    }
+
+    .card {
+    transition: 1s ease;
+    }
+    
+    .card:hover {
+    -webkit-transform: scale(1.08);
+    -ms-transform: scale(1.08);
+    transform: scale(1.08);
+    transition: 1s ease;
+    }
+
+    /* .card{
+        background-color: rgba(245, 245, 245, 1);
+        opacity: .4;
+        filter:drop-shadow( 0 0 0.25rem black)
+    } */
+
+    .card { 
+        width: auto;
+        background-color: rgba(240,173,158,0.1);
+        filter:drop-shadow( 0 0 0.25rem black) }
+   
+    .card-header, .card-footer {opacity: 1}   
+    .card-title{
+        color: white;
+    }
+    
+    /* .gridmid {
+        display: grid;
+        grid-template-columns: 0.7fr repeat(3, 1fr) 0.7fr;
+        grid-template-rows: repeat(4, 1fr) 0.4fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px; 
+        } */
+        
+/*        .mid1 { 
+            grid-area: 1 / 1 / 6 / 2; }
+        
+        .mid2 { 
+            grid-area: 1 / 2 / 5 / 5; }
+        
+        .mid3 { 
+            grid-area: 1 / 5 / 6 / 6; }
+        
+        .mid4 { 
+            grid-area: 5 / 2 / 6 / 5; }
+         */
+
+    .parallax {
+
+        
+        background-image : url("../img/video/Spoon_cLe_Bonbon-1-scaled.jpg");
+        
+        min-height : 100vh;
+        
+        background-attachment : fixed;
+        
+        background-position : center;
+        
+        background-repeat : no-repeat;
+        
+        background-size : cover;
+        
+        }
+
+        button.btn {
+            background-color: #315F72;
+        }   button.btn:hover{
+            background-color: #315F72;
+        }
+
+        .btn{
+            filter:drop-shadow( 0 0 0.25rem black);
+            transition: all 0.25s;
+        } .btn:hover{
+            transform: scale(1.10);
+        }
+
+    @media screen and (max-width: 926px) 
+    {
+    #navbot{
+        margin-left: 0vw;
+        width: 100vw;
+    }
+    .imagecat{
+        width: 45vw;
+    }
+    .imageplat{
+        width: 45vw;
+    }
+    .mid2 { grid-area: 1 / 1 / 5 / 6; }
+    .mid4 { grid-area: 5 / 1 / 6 / 6; }
+    }   
+
+    @media screen and (max-width: 768px) 
+    {
+    #navbot{
+        width: 100vw;
+    }
+    .imagecat{
+        width: 100vw;
+    }
+    .imageplat{
+        width: 100vw;
+    }
+    }
