@@ -98,7 +98,7 @@ class TableTheDistrict extends Fixture
         $user1->setAdresse('45 rue yopland');
         $user1->setCp('80000');
         $user1->setVille('Amiens');
-        $user1->setRoles('admin');
+        $user1->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($user1);
 
@@ -111,7 +111,7 @@ class TableTheDistrict extends Fixture
         $user2->setAdresse('21 rue quatre cailloux');
         $user2->setCp('80000');
         $user2->setVille('Amiens');
-        $user2->setRoles('user');
+        $user2->setRoles(['ROLE_CLIENT']);
 
         $manager->persist($user2);
 

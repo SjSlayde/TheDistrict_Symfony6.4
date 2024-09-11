@@ -4,12 +4,38 @@
 
 {% block body %}
 
-<div class='container'>
+    {{ form_start(form) }}
+<div class='container mt-4'>
     <div class='row justify-content-center'>
 
-{{ form(form) }}
+  
+                <div class="col-6 mb-3">
+                    {{ form_row(form.Nom) }}
+                </div>
 
-    </div>
-<div>
+                <div class="col-6 mb-3">
+                    {{ form_row(form.Prenom) }}
+                </div>
+
+                <div class="col-6 mb-3">
+                    {{ form_row(form.Email) }}
+                </div>
+
+                <div class="col-6 mb-3">
+                    {{ form_row(form.Telephone) }}
+                </div>
+
+                <div class="col-12 mb-3">
+                    {{ form_row(form.Demande) }}
+                </div>
+
+                <div class="mt-3 justify-content-center">
+                    {{ form_row(form.Save) }}
+                </div>
+                
+            </div>
+        </div>
+    {{ form_end(form) }}
+
 
 {% endblock %}

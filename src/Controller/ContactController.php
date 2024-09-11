@@ -15,14 +15,13 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(Request $request,EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(ContactFormType::class);
+        $contact = new Contact();
+        $form = $this->createForm(ContactFormType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            $data = $form->getData();
-            $contact = new Contact();
             
-
-
+            $em->persist($contact);
+            $em->flush();
 
         return $this->redirectToRoute('app_index');
     } else {

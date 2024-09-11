@@ -16,15 +16,40 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Nom',TextType::class)
-            ->add('Prenom',TextType::class)
-            ->add('Email',EmailType::class)
-            ->add('Telephone',TextType::class)
-            ->add('Demande',TextareaType::class,[
-                'label'=> 'Votre Demande'
+            ->add('Nom',TextType::class,[
+                'attr' => [
+                    'class' => 'col-3 form-control'
+                ]
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Envoyer'
+            ->add('Prenom',TextType::class,[
+                'attr' => [
+                    'class' => 'col-3 form-control'
+                ]
+            ])
+            ->add('Email',EmailType::class,[
+                'attr' => [
+                    'class' => 'col-3 form-control'
+                ]
+            ])
+            ->add('Telephone',TextType::class,[
+                'attr' => [
+                    'class' => 'col-3 form-control'
+                ]
+            ])
+            ->add('Demande',TextareaType::class,[
+                'label'=> 'Votre Demande',
+                    'attr' => [
+                        'class' => 'col-3 form-control'
+                    ]
+            ])
+            ->add('Save', SubmitType::class, [
+                'label' => 'Envoyer',
+                'attr' => [
+                    'class' => 'btn btn-success color-315F72 rounded-pill col-1'
+                ],
+                'row_attr' => [
+                    'class' => 'd-flex justify-content-end'
+                ]
             ])
         ;
     }

@@ -6,19 +6,31 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @var list<string> The user roles
+     */
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
@@ -39,18 +51,15 @@ class Utilisateur
     #[ORM\Column(length: 50)]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $roles = null;
-
     /**
      * @var Collection<int, Commande>
      */
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'utilisateur')]
-    private Collection $commandes;
+    private Collection $commande;
 
     public function __construct()
     {
-        $this->commandes = new ArrayCollection();
+        $this->commande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,6 +79,42 @@ class Utilisateur
         return $this;
     }
 
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     * @return list<string>
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param list<string> $roles
+     */
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -80,6 +125,15 @@ class Utilisateur
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getNom(): ?string
@@ -154,30 +208,18 @@ class Utilisateur
         return $this;
     }
 
-    public function getRoles(): ?string
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(string $roles): static
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Commande>
      */
-    public function getCommandes(): Collection
+    public function getCommande(): Collection
     {
-        return $this->commandes;
+        return $this->commande;
     }
 
     public function addCommande(Commande $commande): static
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes->add($commande);
+        if (!$this->commande->contains($commande)) {
+            $this->commande->add($commande);
             $commande->setUtilisateur($this);
         }
 
@@ -186,7 +228,7 @@ class Utilisateur
 
     public function removeCommande(Commande $commande): static
     {
-        if ($this->commandes->removeElement($commande)) {
+        if ($this->commande->removeElement($commande)) {
             // set the owning side to null (unless already changed)
             if ($commande->getUtilisateur() === $this) {
                 $commande->setUtilisateur(null);
