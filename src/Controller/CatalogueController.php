@@ -50,10 +50,13 @@ class CatalogueController extends AbstractController
     #[Route('/plats/{categorie_id}', name: 'app_dishincat' , requirements: ['categorie_id' => '\d+'])]
     public function ShowDishForCat(int $categorie_id): Response
     {
-        $plat = $this->platRepo->findBy(['categorie_id' => $categorie_id]);
+        $categorie = $this->categoryRepo->find($categorie_id);
+
+        $plat = $this->platRepo->findBy(['categorie' => $categorie->getId()]);
         return $this->render('catalogue/dishincat.html.twig', [
             'controller_name' => 'CatalogueController',
-            'plat'=> $plat
+            'plat'=> $plat,
+            'categorie' => $categorie
         ]);
     }
 

@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CatalogueController!{% endblock %}
+{% block title %}plat{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block body %}  
+    <div class="container-fluid g-0 row">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/benj_/Documents/code/TheDistrict/src/Controller/CatalogueController.php</code></li>
-        <li>Your template at <code>C:/Users/benj_/Documents/code/TheDistrict/templates/catalogue/index.html.twig</code></li>
-    </ul>
+                 <div class="row justify-content-center mt-3">
+                 <h2 class="fs-1 col-12 ms-md-5">Nos plats :</h2>
+                <div class="row justify-content-center">
+
+                 {% for plats in plat %}
+
+                <div class="card col-4 flex-row mt-3 mx-md-5" style="width: 35rem">
+                          <img src="{{ asset ('img/food/' ~ plats.image) }}" class="rounded-3 img-fluid m-auto" alt="{{ plats.libelle }}'_food" style="width: 10rem; height: fit-content;">
+                        <div class="card-body">
+                          <h5 class="card-title mt-md-4">{{ plats.libelle }}</h5>
+                          <p class="card-text">{{ plats.description }}</p>
+                          <p class="card-text">{{ plats.prix}}</p>
+                          <div class="d-flex justify-content-end">
+                            <button type="button" class="d-none d-md-block btn btn-primary btn-lg position-absolute bottom-0 end-0" name="platcom" value="{{ plats.id}}">Commander</button>
+                            <button type="button" class="d-block d-md-none btn btn-primary btn-lg position-absolute bottom-0 start-0" name="platcom" value="{{ plats.id}}">Commander</button>
+                          </div>
+                        </div>
+                </div>
+
+                 {% endfor %}
+
 </div>
+</div>
+</div>
+</div>
+
 {% endblock %}

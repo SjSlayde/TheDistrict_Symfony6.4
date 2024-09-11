@@ -91,11 +91,12 @@ body {
     } */
 
     .card { 
-        width: auto;
+        width: 19.5vw;
         background-color: rgba(240,173,158,0.1);
         filter:drop-shadow( 0 0 0.25rem black) }
    
-    .card-header, .card-footer {opacity: 1}   
+    .card-header, .card-footer {opacity: 1}
+
     .card-title{
         color: white;
     }
