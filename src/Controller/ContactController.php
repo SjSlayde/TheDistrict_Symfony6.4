@@ -2,17 +2,33 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\ContactFormType;
 
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function index(): Response
+    public function index(Request $request,EntityManagerInterface $em): Response
     {
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+        $form = $this->createForm(ContactFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            $contact = new Contact();
+            
+
+
+
+        return $this->redirectToRoute('app_index');
+    } else {
+        return $this->render('contact/index.html.twig',[
+            'form' => $form
         ]);
     }
+}
 }
