@@ -35,6 +35,13 @@ body {
                     width: 18vw;
                     height: 25vh;
                 }
+
+                .imagepanier {
+                    margin-top: 5px;
+                    padding: 0;
+                    width: auto;
+                    height: 13vh;
+                }
             
                 .imageplat {
                     margin-top: 5px;
