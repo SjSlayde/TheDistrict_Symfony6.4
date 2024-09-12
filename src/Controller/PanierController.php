@@ -29,6 +29,8 @@ class PanierController extends AbstractController
             $total += $plat->getPrix() * $quantite;
         }
 
+        count($dataPanier);
+
         return $this->render('panier/index.html.twig', compact("dataPanier", 
         "total"));
     }

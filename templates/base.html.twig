@@ -16,7 +16,7 @@
         {% endblock %}
             </head>
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-                    <a class="navbar-brand" href="#"><img src="{{ asset ('img/the_district_brand/logo.png') }}" width="50" class="d-inline-block align-text-top" alt="navicon"></a>
+                    <a class="navbar-brand" href="{{ path ('app_index') }}"><img src="{{ asset ('img/the_district_brand/logo.png') }}" width="50" class="d-inline-block align-text-top" alt="navicon"></a>
                     
                     <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapsibleNavbar">
@@ -36,7 +36,7 @@
                             <a class="textnav nav-link {{ app.current_route == 'app_dish' ? 'active' : ''}}" href="{{ path ('app_dish') }}" title="Plat">Plat</a>
                         </li>
                         <li class="nav-item px-5">
-                            <a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">contact</a>
+                            <a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">Contact</a>
                         </li>
                         <li class="navbar-brand position-absolute end-0">
                             <a href="{{ path ("app_panier") }}" class="btn btn-success">
