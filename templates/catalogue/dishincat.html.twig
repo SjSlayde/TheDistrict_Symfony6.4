@@ -20,8 +20,8 @@
                           <p class="card-text">{{ plats.description }}</p>
                           <p class="card-text">{{ plats.prix}}</p>
                           <div class="d-flex justify-content-end">
-                            <button type="button" class="d-none d-md-block btn btn-primary btn-lg position-absolute bottom-0 end-0" name="platcom" value="{{ plats.id}}">Commander</button>
-                            <button type="button" class="d-block d-md-none btn btn-primary btn-lg position-absolute bottom-0 start-0" name="platcom" value="{{ plats.id}}">Commander</button>
+                              <a href="{{ path ("app_ajout_panier" , {id: plats.id}) }}" class="d-none d-md-block btn btn-primary btn-lg position-absolute bottom-0 end-0">Ajouter</a>
+                            <a href="{{ path ("app_ajout_panier" , {id: plats.id}) }}" class="d-block d-md-none btn btn-primary btn-lg position-absolute bottom-0 start-0">Ajouter</a>
                             </div>
                         </div>
                         </div>

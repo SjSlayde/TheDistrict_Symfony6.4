@@ -14,7 +14,6 @@ class PanierController extends AbstractController
     #[Route('/panier', name: 'app_panier')]
     public function index(SessionInterface $session,PlatRepository $PlatRepo): Response
     {
-
         $panier = $session->get('panier', []);
 
         $dataPanier = [];
@@ -34,8 +33,8 @@ class PanierController extends AbstractController
         "total"));
     }
 
-    #[Route('/panier/ajout/{id}', name: 'app_addpanier', requirements: ['id' => '\d+'])]
-    public function AddDish(SessionInterface $session,Plat $plat): Response
+    #[Route('/panier/ajout/{id}', name: 'app_ajout_panier', requirements: ['id' => '\d+'])]
+    public function AjoutDish(SessionInterface $session,Plat $plat): Response
     {
         $panier = $session->get('panier', []);
         $id = $plat->getId();
@@ -48,7 +47,48 @@ class PanierController extends AbstractController
 
         $session->set('panier', $panier);
 
-        // dd($session->get('panier'));
+        return $this->redirectToRoute('app_panier');
+    }
+
+    #[Route('/panier/enlever/{id}', name: 'app_enlever_panier', requirements: ['id' => '\d+'])]
+    public function EnleverDish(SessionInterface $session,Plat $plat): Response
+    {
+        $panier = $session->get('panier', []);
+        $id = $plat->getId();
+
+        if (!empty($panier[$id])){
+            if ($panier[$id] > 1){
+            $panier[$id]--;
+        } else {
+            unset($panier[$id]);
+        }}
+
+        $session->set('panier', $panier);
+
+
+        return $this->redirectToRoute('app_panier');
+    }
+
+
+    #[Route('/panier/supprimer/{id}', name: 'app_supprimer_panier', requirements: ['id' => '\d+'])]
+    public function DeleteDish(SessionInterface $session,Plat $plat): Response
+    {
+        $panier = $session->get('panier', []);
+        $id = $plat->getId();
+
+        if (!empty($panier[$id])){
+            unset($panier[$id]);}
+
+        $session->set('panier', $panier);
+
+        return $this->redirectToRoute('app_panier');
+    }
+
+    #[Route('/panier/supprimer/all', name: 'app_supprimer_panier_all')]
+    public function DeleteAllDish(SessionInterface $session): Response
+    {
+        // $session->remove('panier');
+        $session->set('panier', []);
 
         return $this->redirectToRoute('app_panier');
     }
