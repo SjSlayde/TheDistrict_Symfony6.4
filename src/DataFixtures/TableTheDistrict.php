@@ -9,6 +9,8 @@ use App\Entity\Plat;
 use App\Entity\Detail;
 use App\Entity\Utilisateur;
 use App\Entity\Commande;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 
@@ -16,6 +18,13 @@ use App\Entity\Commande;
 
 class TableTheDistrict extends Fixture
 {
+    private $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher){
+        $this->passwordHasher = $passwordHasher;
+    }
+
+
     public function load(ObjectManager $manager): void
     {
         $cat1 = new Categorie();
@@ -92,6 +101,13 @@ class TableTheDistrict extends Fixture
         $user1 = new Utilisateur();
         $user1->setEmail('yop@gmail.com');
         $user1->setPassword('yop');
+
+        $Password1 = 'yop';
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user1,
+            $Password1
+        );
+        $user1->setPassword($hashedPassword);
         $user1->setNom('Yop');
         $user1->setPrenom('Michele');
         $user1->setTelephone('0498825111');
@@ -104,7 +120,15 @@ class TableTheDistrict extends Fixture
 
         $user2 = new Utilisateur();
         $user2->setEmail('cacao@yahoo.com');
-        $user2->setPassword('cacao');
+        // $user2->setPassword('cacao');
+
+        $Password = 'cacao';
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user2,
+            $Password
+        );
+        $user2->setPassword($hashedPassword);
+        
         $user2->setNom('Cacao');
         $user2->setPrenom('Bernard');
         $user2->setTelephone('0449452282');
@@ -154,4 +178,13 @@ class TableTheDistrict extends Fixture
 
         $manager->flush();
     }
+
+    // public function passhasher($password,$user, UserPasswordHasherInterface $passwordHasher):Response{
+    //     $hashedPassword = $passwordHasher->hashPassword(
+    //         $user,
+    //         $password
+    //     );
+        
+    //     return $user->setPassword($hashedPassword);
+    // }
 }

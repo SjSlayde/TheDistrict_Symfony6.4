@@ -131,7 +131,4 @@ class Commande
 
         return $this;
     }
-
-
-
 }

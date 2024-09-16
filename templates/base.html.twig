@@ -25,24 +25,52 @@
                 
                 <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
                 <div class='jutify-content-center'>
-                <ul class="navbar-nav">
+                    <ul class="navbar-nav">
+
                         <li class="nav-item px-5">
                             <a class="textnav nav-link {{ app.current_route == 'app_index' ? 'active' : ''}}" href="{{ path ('app_index') }}" title="Accueil">Accueil</a>
                         </li>
+
                         <li class="nav-item px-5">
                             <a class="textnav nav-link {{ app.current_route == 'app_category' ? 'active' : ''}}" href="{{ path ('app_category') }}" title="Categorie">Categorie</a>
                         </li>
+
                         <li class="nav-item px-5">
                             <a class="textnav nav-link {{ app.current_route == 'app_dish' ? 'active' : ''}}" href="{{ path ('app_dish') }}" title="Plat">Plat</a>
                         </li>
+
                         <li class="nav-item px-5">
                             <a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">Contact</a>
                         </li>
+
+                        {% if app.user %}
+
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
+                        </li>
+
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
+                        </li>
+
+                        {% else %}
+
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
+                        </li>
+
+                        <li class="nav-item px-5">
+                            <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
+                        </li>
+
+                        {% endif %}
+
                         <li class="navbar-brand position-absolute end-0">
                             <a href="{{ path ("app_panier") }}" class="btn btn-success">
                                 <i class="bi bi-cart"></i>
                             </a>
                         </li>
+
                     </ul>
                 </div>
                 </div>

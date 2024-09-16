@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation de compte{% endblock %}
+
+{% block body %}
+
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+        
+            <div class='container mt-4'>
+                <div class='row justify-content-center'>
+                    <h1>Creation de compte</h1>
+
+                    <div class="col-12 mb-3">
+                        {{ form_row(registrationForm.nom) }}
+                    </div>
+                
+                    <div class="col-12 mb-3">
+                        {{ form_row(registrationForm.prenom) }}
+                    </div>
+                
+                    <div class="col-12 mb-3">    
+                        {{ form_row(registrationForm.email) }}
+                    </div>
+                
+                    <div class="col-12 mb-3">                    
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: 'Password'
+                        }) }}
+                    </div>
+                
+                    <div class="col-12 mb-3">
+                        {{ form_row(registrationForm.telephone) }}
+                    </div>
+                
+                    <div class="col-12 mb-3">
+                        {{ form_row(registrationForm.adresse) }}
+                    </div>
+                    
+                    <div class="col-6 mb-3">
+                        {{ form_row(registrationForm.cp) }}
+                    </div>
+                    
+                    <div class="col-6 mb-3">
+                        {{ form_row(registrationForm.ville) }}
+                    </div>
+                
+                    <div class="col mb-3">
+                        {{ form_row(registrationForm.agreeTerms) }}
+                    </div>
+
+                    <div class="col position-relative">
+                        <button type="submit" class="btn position-absolute bottom-0 end-0">Enregistrer</button>
+                    </div>
+
+                </div>
+            </div>
+
+        {{ form_end(registrationForm) }}
+
+
+
+{% endblock %}

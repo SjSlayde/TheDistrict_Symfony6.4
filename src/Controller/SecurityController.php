@@ -5,7 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\RegistrationFormType;
+use App\Entity\Utilisateur;
 
 class SecurityController extends AbstractController
 {
@@ -29,4 +33,23 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+//     #[Route(path: '/registre', name: 'app_registre')]
+//     public function registre(Request $request,EntityManagerInterface $em): Response
+//     {
+//         $Utilisateur = new Utilisateur();
+//         $form = $this->createForm(RegistrationFormType::class, $Utilisateur);
+//         $form->handleRequest($request);
+//         if ($form->isSubmitted() && $form->isValid()){
+            
+//             $em->persist($Utilisateur);
+//             $em->flush();
+
+//         return $this->redirectToRoute('app_index');
+//     } else {
+//         return $this->render('connexion/index.html.twig',[
+//             'form' => $form
+//         ]);
+//     }
+// }
 }

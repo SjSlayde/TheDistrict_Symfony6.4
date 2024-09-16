@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+<h1>Mes commandes</h1>
+
+<table class="table table-striped-columns">
+    <thead>
+        <tr>
+            <th class='text-center'>date de la commande</th>
+            <th class='text-center'>etat</th>
+            <th class='text-center'>detail commande</th>
+            <th class='text-center'>total</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for commande in commandes  %}
+                <tr>
+                    <th class='text-center align-middle'>{{ commande.DateCommande | date("d/m/Y") }}</th>
+
+                    <th class='text-center align-middle'>{% if (commande.etat == 0) %}enregistrée/payée {% elseif (commande.etat == 1) %} en préparation {% elseif (commande.etat == 2) %} en cours de livraison {% elseif (commande.etat == 3) %} livrée {% endif %} </th>
+
+                    <th class='text-start'>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prix</th>
+                                                <th>quantite</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for detail in commande.details  %}
+                                                <tr>
+                                                    <td>{{ detail.plats.libelle }}</td>
+                                                    <td>{{ detail.plats.prix }}</td>
+                                                    <td>{{ detail.quantite}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table></th>
+
+                    <th class='text-center align-middle'>{{ commande.total }}</th>
+                    
+                </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+</div>
+</div>
+</div>
+{% endblock %}
