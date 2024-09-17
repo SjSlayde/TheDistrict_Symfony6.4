@@ -6,6 +6,7 @@ use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Event\PostSubmitEvent;
@@ -66,7 +67,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('Password', PasswordType::class, [
                                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -86,6 +87,15 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, $this->setRole(...))
+            ->add('Save', SubmitType::class, [
+                'label' => 'Envoyer',
+                'attr' => [
+                    'class' => 'btn btn-success color-315F72 rounded-pill'
+                ],
+                'row_attr' => [
+                    'class' => 'd-flex justify-content-end'
+                ]
+            ])
         ;
     }
 

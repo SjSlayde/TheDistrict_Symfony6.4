@@ -88,8 +88,7 @@
                     <thead>
                         <tr>
                             <th class="text-start" scope="col">Total :</th>
-                            <td ></td>
-                            <td ></td>
+                            <th></th>
                             <th class="text-end">
                                 <a href="{{ path ("app_supprimer_panier_all") }}" class="btn btn-danger">
                                     <i class="bi bi-cart-x"></i>
@@ -115,7 +114,14 @@
                     {% endfor %}
 
                         <tr>
-                                <td colspan="2" class="text-center">Sous-total ({{ dataPanier | length}} article{% if dataPanier | length > 1 %}s{% endif %}) : {{ total }}.00 €</td>
+                            <td colspan="3" class="text-center">Sous-total ({{ dataPanier | length}} article{% if dataPanier | length > 1 %}s{% endif %}) : {{ total }}.00 €</td>
+                        </tr>
+
+                        <tr>
+                            <td  colspan="3" class="text-end">
+                                <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ('app_commande') }}">
+                                <button class="btn btn-primary">Commander</button></a>
+                            </td>
                         </tr>
                     </tbody>
             </table>

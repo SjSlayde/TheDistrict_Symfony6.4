@@ -4,8 +4,27 @@
 
 {% block body %}
 <div class="container">
+<h1 class="my-2">Detail du compte</h1>
+    <div class="row justify-content-start">
+        <h2>mes informations personnel</h2>
+        <div class="card text-bg-primary my-3" >
+            <div class="card-header">adresse</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ user.Nom }} {{ user.prenom | upper}}</h5>
+                <p class="card-text">{{ user.email }}</p>
+                <p class="card-text">{{ user.telephone }}</p>
+                <p class="card-text">{{ user.adresse }}</p>
+                <p class="card-text">{{ user.ville }}</p>
+                <p class="card-text">{{ user.cp }}</p>
+                 <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ('app_editprofil', {nom: app.user.nom,prenom: app.user.prenom}) }}">
+                <button class="btn btn-primary">Modifier</button></a>
+            </div>
+        </div>
+    </div>
+
+
 <div class="row">
-<h1>Mes commandes</h1>
+<h2>Mes commandes</h2>
 
 <table class="table table-striped-columns">
     <thead>

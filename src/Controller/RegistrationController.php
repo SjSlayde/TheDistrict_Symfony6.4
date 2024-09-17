@@ -74,4 +74,29 @@ class RegistrationController extends AbstractController
                 'commandes'=> $commandes
             ]);
         }
+
+        #[Route('/{nom}-{prenom}/edit', name: 'app_editprofil')]
+        public function EditUser(Request $request,EntityManagerInterface $em): Response
+        {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    
+            /** @var \App\Entity\Utilisateur $user */
+            $user = $this->getUser();
+
+            $form = $this->createForm(RegistrationFormType::class, $user);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()){
+                $em->flush();
+                return $this->redirectToRoute('app_utilisateur' , [
+                    'nom' => $user->getNom(),
+                    'prenom' => $user->getPrenom()
+                ]);
+                }
+
+            return $this->render('connexion/edit.html.twig',[
+                'user'=> $user,
+                'form' => $form
+            ]);
+        }
 }
