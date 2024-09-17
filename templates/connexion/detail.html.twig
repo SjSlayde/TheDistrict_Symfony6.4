@@ -53,11 +53,13 @@
                                         </thead>
                                         <tbody>
                                             {% for detail in commande.details  %}
+                                               
                                                 <tr>
                                                     <td>{{ detail.plats.libelle }}</td>
                                                     <td>{{ detail.plats.prix }}</td>
                                                     <td>{{ detail.quantite}}</td>
                                                 </tr>
+
                                             {% endfor %}
                                         </tbody>
                                     </table></th>

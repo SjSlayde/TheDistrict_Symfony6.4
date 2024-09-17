@@ -5,8 +5,8 @@
 {% block body %}
 
     {{ form_start(form) }}
-<div class='container mt-4'>
-    <div class='row justify-content-center'>
+        <div class='container mt-4'>
+            <div class='row justify-content-center'>
 
   
                 <div class="col-6 mb-3">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-12 mb-3">
-                    {{ form_row(form.Password) }}
+                    {{ form_row(form.plainPassword) }}
                 </div>
 
                 <div class="col-12 mb-3">
@@ -44,18 +44,18 @@
                 <div class="col mb-3">
                     {{ form_row(form.agreeTerms) }}
                 </div>
-
-                <div class="col mb-3">
-                    {{ form_row(form.Save) }}
-                </div>
-
-{# 
-                <div class="mt-3 justify-content-center">
-                    {{ form_row(form.Save) }}
+                
+                {# <div class="col mb-3">
+                    {{ form_row(form.agreeTerms) }}
                 </div> #}
+
+                <div class="col position-relative">
+                    <button type="submit" class="btn position-absolute bottom-0 end-0">Enregistrer</button>
+                </div>
                 
             </div>
         </div>
+        
     {{ form_end(form) }}
 
 

@@ -67,7 +67,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('Password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -87,15 +87,15 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, $this->setRole(...))
-            ->add('Save', SubmitType::class, [
-                'label' => 'Envoyer',
-                'attr' => [
-                    'class' => 'btn btn-success color-315F72 rounded-pill'
-                ],
-                'row_attr' => [
-                    'class' => 'd-flex justify-content-end'
-                ]
-            ])
+            // ->add('Save', SubmitType::class, [
+            //     'label' => 'Envoyer',
+            //     'attr' => [
+            //         'class' => 'btn btn-success color-315F72 rounded-pill col-1'
+            //     ],
+            //     'row_attr' => [
+            //         'class' => 'd-flex justify-content-end'
+            //     ]
+            // ])
         ;
     }
 

@@ -76,7 +76,7 @@ class RegistrationController extends AbstractController
         }
 
         #[Route('/{nom}-{prenom}/edit', name: 'app_editprofil')]
-        public function EditUser(Request $request,EntityManagerInterface $em): Response
+        public function EditUser(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security,EntityManagerInterface $em): Response
         {
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     
@@ -87,11 +87,22 @@ class RegistrationController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()){
+                                /** @var string $plainPassword */
+                $plainPassword = $form->get('plainPassword')->getData();
+
+                // encode the plain password
+                $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+
+                // $em->persist($user);
                 $em->flush();
+
+                // do anything else you need here, like send an email
+
+                // return $security->login($user, UserFormAuthenticator::class, 'main');
                 return $this->redirectToRoute('app_utilisateur' , [
                     'nom' => $user->getNom(),
                     'prenom' => $user->getPrenom()
-                ]);
+                    ]);
                 }
 
             return $this->render('connexion/edit.html.twig',[
