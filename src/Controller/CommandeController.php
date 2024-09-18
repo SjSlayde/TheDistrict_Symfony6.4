@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\Detail;
+use App\Manager\CommandeManager;
 use App\Form\CommandeType;
 use App\Repository\PlatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use App\EventSubscriber\MailCommandeSubscriber;
 
 class CommandeController extends AbstractController
 {
@@ -22,7 +25,7 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/commande', name: 'app_commande')]    
-    public function index(Request $request,EntityManagerInterface $em,SessionInterface $session): Response
+    public function index(Request $request,EntityManagerInterface $em,SessionInterface $session,CommandeManager $cm): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     
@@ -50,7 +53,7 @@ class CommandeController extends AbstractController
             $commande->setEtat(0);
             $commande->setUtilisateurs($user);
 
-            $em->persist($commande);
+            $cm->setCommande($commande);
 
             foreach($panier as $id => $quantite){
                 $plat = $this->PlatRepo->find($id);
@@ -66,8 +69,7 @@ class CommandeController extends AbstractController
 
                 $total += $plat->getPrix() * $quantite;
             }
-
-        return $this->redirectToRoute('app_index');
+            return $this->redirectToRoute('app_index');
     } else {
         return $this->render('commande/index.html.twig',[
             'form' => $form
