@@ -27,6 +27,10 @@ class CommandeController extends AbstractController
     #[Route('/commande', name: 'app_commande')]    
     public function index(Request $request,EntityManagerInterface $em,SessionInterface $session,CommandeManager $cm): Response
     {
+        $panier = $session->get('panier', []);
+
+        if(!empty($panier)){
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     
         /** @var \App\Entity\Utilisateur $user */
@@ -69,10 +73,13 @@ class CommandeController extends AbstractController
 
                 $total += $plat->getPrix() * $quantite;
             }
+            $session->set('panier', []);
             return $this->redirectToRoute('app_index');
     } else {
         return $this->render('commande/index.html.twig',[
             'form' => $form
         ]);
+    }        }else {
+        return $this->redirectToRoute('app_panier');
     }
 }}
