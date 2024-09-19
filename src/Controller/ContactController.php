@@ -30,4 +30,20 @@ class ContactController extends AbstractController
         ]);
     }
 }
+
+#[Route('/politique_de_confidentialite', name: 'app_pdf')]
+public function politiqueconf(): Response
+{
+   
+    return $this->render('contact/politique_de_confidentialite.html.twig');
 }
+
+#[Route('/mention_legale', name: 'app_mention_legale')]
+public function mention_legale(): Response
+{
+    
+    return $this->render('contact/mention_legale.html.twig');
+}
+}
+
+

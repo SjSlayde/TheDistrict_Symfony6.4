@@ -1,0 +1,32 @@
+------------------------------------------------------------------------
+
+Vous devrez apporter un soin particulier à l'apparence graphique et à la responsivité de votre site. Votre site doit être utilisable sur un mobile.
+
+------------------------------------------------------------------------
+
+Les fonctions de gestion du panier (list, add, remove) doivent être isolées dans un service Symfony.
+
+------------------------------------------------------------------------
+
+L'utilisateur doit être connecté pour accéder à cette page, il doit pouvoir choisir :
+
+    l'adresse de livraison
+    l'adresse de facturation
+    le mode de paiement
+
+------------------------------------------------------------------------
+
+Les rôles de l'application seront définis de la façon suivante :
+rôle 	        description
+
+ROLE_ADMIN 	    Accès à toutes les pages
+ROLE_CHEF 	    Accès au catalogue et à la gestion des plats
+ROLE_CLIENT 	Accès au catalogue et à la validation de la commande
+
+------------------------------------------------------------------------
+
+Mettre en place une API Restfull
+
+------------------------------------------------------------------------
+
+React

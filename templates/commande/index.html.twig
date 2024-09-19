@@ -37,7 +37,16 @@
                     </div>
                 
                     <div class="col-6 mb-3">
-                        {{ form_row(form.agreeTerms) }}
+                        <div>
+                            <a href="{{ path ('app_pdf') }}" title="politique_de_confidentialité">
+                                {{ form_label(form.agreeTerms) }}
+                            </a>
+                            {{ form_widget(form.agreeTerms) }}
+                            {{ form_help(form.agreeTerms) }}
+                            <div class="form-error">
+                                {{ form_errors(form.agreeTerms) }}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-6 mb-3">

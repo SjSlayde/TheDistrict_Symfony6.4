@@ -56,6 +56,7 @@ class CommandeType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,
+                                'label' => 'Veuillez accepter les conditions générales d\'utilisation',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
