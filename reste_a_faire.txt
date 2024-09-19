@@ -4,7 +4,11 @@ Vous devrez apporter un soin particulier à l'apparence graphique et à la respo
 
 ------------------------------------------------------------------------
 
-Les fonctions de gestion du panier (list, add, remove) doivent être isolées dans un service Symfony.
+Les fonctions de gestion du panier (list, add, remove) doivent être isolées dans un service Symfony.(Fait)
+
+------------------------------------------------------------------------
+
+Mettre et utiliser mais image dans le Dossier public
 
 ------------------------------------------------------------------------
 
@@ -25,8 +29,8 @@ ROLE_CLIENT 	Accès au catalogue et à la validation de la commande
 
 ------------------------------------------------------------------------
 
-Mettre en place une API Restfull
+Mettre en place une API Restfull(chapitre)
 
 ------------------------------------------------------------------------
 
-React
+React(chapitre)

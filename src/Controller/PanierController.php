@@ -2,32 +2,27 @@
 
 namespace App\Controller;
 
+use App\Service\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\Plat;
-use App\Repository\PlatRepository;
 
 class PanierController extends AbstractController
 {
+    private $PS;
+
+    public function __construct(PanierService $PanierService){
+        $this->PS = $PanierService;
+    }
+    
     #[Route('/panier', name: 'app_panier')]
-    public function index(SessionInterface $session,PlatRepository $PlatRepo): Response
+    public function index(): Response
     {
-        $panier = $session->get('panier', []);
+        $panier = $this->PS->ShowPanier();
 
-        $dataPanier = [];
-        $total = 0;
-
-        foreach($panier as $id => $quantite){
-            $plat = $PlatRepo->find($id);
-            $dataPanier[] = [
-                "plat" => $plat ,
-                "quantite" => $quantite
-            ];
-
-            $total += $plat->getPrix() * $quantite;
-        }
+        $dataPanier = $this->PS->ShowDataPanier();
+        $total = $this->PS->getTotal();
 
         count($dataPanier);
 
@@ -36,61 +31,35 @@ class PanierController extends AbstractController
     }
 
     #[Route('/panier/ajout/{id}', name: 'app_ajout_panier', requirements: ['id' => '\d+'])]
-    public function AjoutDish(SessionInterface $session,Plat $plat): Response
+    public function AjoutDish(Plat $plat): Response
     {
-        $panier = $session->get('panier', []);
-        $id = $plat->getId();
-
-        if (!empty($panier[$id])){
-            $panier[$id]++;
-        } else{
-            $panier[$id] = 1;
-        }
-
-        $session->set('panier', $panier);
+        $this->PS->AddOneDish($plat);
 
         return $this->redirectToRoute('app_panier');
     }
 
     #[Route('/panier/enlever/{id}', name: 'app_enlever_panier', requirements: ['id' => '\d+'])]
-    public function EnleverDish(SessionInterface $session,Plat $plat): Response
+    public function RemoveOneQuantity(Plat $plat): Response
     {
-        $panier = $session->get('panier', []);
-        $id = $plat->getId();
-
-        if (!empty($panier[$id])){
-            if ($panier[$id] > 1){
-            $panier[$id]--;
-        } else {
-            unset($panier[$id]);
-        }}
-
-        $session->set('panier', $panier);
-
+         $this->PS->RemoveOneQuantity($plat);
 
         return $this->redirectToRoute('app_panier');
     }
 
 
     #[Route('/panier/supprimer/{id}', name: 'app_supprimer_panier', requirements: ['id' => '\d+'])]
-    public function DeleteDish(SessionInterface $session,Plat $plat): Response
+    public function DeleteOneDish(Plat $plat): Response
     {
-        $panier = $session->get('panier', []);
-        $id = $plat->getId();
-
-        if (!empty($panier[$id])){
-            unset($panier[$id]);}
-
-        $session->set('panier', $panier);
+        $this->PS->DeleteOneDish($plat);
 
         return $this->redirectToRoute('app_panier');
     }
 
     #[Route('/panier/supprimer/all', name: 'app_supprimer_panier_all')]
-    public function DeleteAllDish(SessionInterface $session): Response
+    public function DeleteAllDish(): Response
     {
         // $session->remove('panier');
-        $session->set('panier', []);
+        $this->PS->DeleteAllDish();
 
         return $this->redirectToRoute('app_panier');
     }

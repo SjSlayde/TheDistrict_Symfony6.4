@@ -6,28 +6,34 @@ use App\Entity\Commande;
 use App\Entity\Detail;
 use App\Manager\CommandeManager;
 use App\Form\CommandeType;
+use App\Manager\DetailManager;
 use App\Repository\PlatRepository;
+use App\Service\PanierService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use App\EventSubscriber\MailCommandeSubscriber;
 
 class CommandeController extends AbstractController
 {
     private $PlatRepo;
+    private $ps;
+    private $cm;
+    private $dm;
 
-    public function __construct(PlatRepository $PlatRepo){
+    public function __construct(PlatRepository $PlatRepo, PanierService $panierService,CommandeManager $cm,DetailManager $dm){
         $this->PlatRepo = $PlatRepo;
+        $this->ps = $panierService;
+        $this->cm = $cm;
+        $this->dm = $dm;
     }
 
     #[Route('/commande', name: 'app_commande')]    
-    public function index(Request $request,EntityManagerInterface $em,SessionInterface $session,CommandeManager $cm): Response
+    public function index(Request $request,EntityManagerInterface $em): Response
     {
-        $panier = $session->get('panier', []);
+        $panier = $this->ps->ShowPanier();
 
         if(!empty($panier)){
 
@@ -41,15 +47,7 @@ class CommandeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            $panier = $session->get('panier', []);
-
-            $dataPanier = [];
-            $total = 0;
-
-            foreach($panier as $id => $quantite){
-                $plat = $this->PlatRepo->find($id);
-                $total += $plat->getPrix() * $quantite;
-            }
+            $total = $this->ps->getTotal();
 
             $commande = new Commande();
             $commande->setDateCommande(new \DatetimeImmutable());
@@ -57,7 +55,7 @@ class CommandeController extends AbstractController
             $commande->setEtat(0);
             $commande->setUtilisateurs($user);
 
-            $cm->setCommande($commande);
+            $this->cm->setCommande($commande);
 
             foreach($panier as $id => $quantite){
                 $plat = $this->PlatRepo->find($id);
@@ -67,13 +65,11 @@ class CommandeController extends AbstractController
                 $detail->setCommandes($commande);
                 $detail->setPlats($plat);
 
-                $em->persist($detail);
-
-                $em->flush();
-
-                $total += $plat->getPrix() * $quantite;
+                $this->dm->setDetail($detail);
             }
-            $session->set('panier', []);
+
+            $this->ps->DeleteAllDish();
+
             return $this->redirectToRoute('app_index');
     } else {
         return $this->render('commande/index.html.twig',[

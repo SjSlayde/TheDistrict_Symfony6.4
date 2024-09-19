@@ -20,6 +20,7 @@ class MailingSubscriber implements EventSubscriberInterface
     $parameters = [
         "user" => $commande->getUtilisateurs(),
         "commande" => $commande,
+        "details" => $commande->getDetails(),
         "datejour" => date("d-m-Y"),
         "dateheure" => date("H:m"),
         "datelivraison" => date('H:i:s', strtotime('+30 minutes', strtotime(date('H:i:s'))))
@@ -55,7 +56,7 @@ class MailingSubscriber implements EventSubscriberInterface
                 ['SendMailEventCommande',1]
             ],
             ContactEvent::class => [
-                ['SendMailEventContact',1]
+                ['SendMailEventContact',2]
             ]
         ];
     }

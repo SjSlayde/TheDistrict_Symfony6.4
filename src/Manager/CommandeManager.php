@@ -25,4 +25,10 @@ class CommandeManager
             $this->eventDispatcherInterface->dispatch($event);
         }
     }
+    // public function setMail($commande){
+    //     if($commande instanceof Commande){
+    //     $event = new CommandeEvent($commande);
+    //     $this->eventDispatcherInterface->dispatch($event);
+    //     }
+    // }
 }
