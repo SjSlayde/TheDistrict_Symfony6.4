@@ -1,14 +1,26 @@
 ------------------------------------------------------------------------
 
-Vous devrez apporter un soin particulier à l'apparence graphique et à la responsivité de votre site. Votre site doit être utilisable sur un mobile.
+Vous devrez apporter un soin particulier à l'apparence graphique et à la responsivité de votre site. Votre site doit être utilisable sur un mobile.(maybe)
 
 ------------------------------------------------------------------------
 
-Les fonctions de gestion du panier (list, add, remove) doivent être isolées dans un service Symfony.(Fait)
+Positionner correctement les onglet login ma navbar(Before Winter 2028) 
 
 ------------------------------------------------------------------------
 
-Mettre et utiliser mais image dans le Dossier public
+ajouter les message flash
+
+------------------------------------------------------------------------
+
+ajouter des validator sur les formulaire
+
+------------------------------------------------------------------------
+
+Les fonctions de gestion du panier (list, add, remove) doivent être isolées dans un service Symfony.(Good)
+
+------------------------------------------------------------------------
+
+Mettre et utiliser mais image dans le Dossier public(in progress)
 
 ------------------------------------------------------------------------
 

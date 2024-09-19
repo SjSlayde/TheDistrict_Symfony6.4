@@ -70,6 +70,8 @@ class CommandeController extends AbstractController
 
             $this->ps->DeleteAllDish();
 
+            $this->addFlash('success','Vous allez être livré sous peu');
+
             return $this->redirectToRoute('app_index');
     } else {
         return $this->render('commande/index.html.twig',[
