@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-
+            $this->addFlash('success','Votre compte client a biern été crées');
             return $security->login($user, UserFormAuthenticator::class, 'main');
         }
 
@@ -98,6 +98,7 @@ class RegistrationController extends AbstractController
 
                 // do anything else you need here, like send an email
 
+                $this->addFlash('success','Vos informations personnelles ont été changées');
                 // return $security->login($user, UserFormAuthenticator::class, 'main');
                 return $this->redirectToRoute('app_utilisateur' , [
                     'nom' => $user->getNom(),

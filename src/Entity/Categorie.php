@@ -6,6 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -15,18 +16,22 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column]
     private ?bool $active = null;
 
     /**
      * @var Collection<int, Plat>
      */
+    
     #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'plats')]
     private Collection $plats;
 

@@ -4,15 +4,15 @@ Vous devrez apporter un soin particulier à l'apparence graphique et à la respo
 
 ------------------------------------------------------------------------
 
-Positionner correctement les onglet login ma navbar(Before Winter 2028) 
+Positionner correctement les onglet login ma navbar(good) 
 
 ------------------------------------------------------------------------
 
-ajouter les message flash
+ajouter les message flash(reste a ajouté les message flash connexion)
 
 ------------------------------------------------------------------------
 
-ajouter des validator sur les formulaire
+ajouter des validator sur les formulaire(a la fin)
 
 ------------------------------------------------------------------------
 

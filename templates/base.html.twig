@@ -43,51 +43,90 @@
                             <a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">Contact</a>
                         </li>
 
-                        {% if app.user %}
+                        {# {% if app.user %}
 
-                        <li class="nav-item px-5">
+                        <li class="nav-item px-5 d-block d-md-none">
                             <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
                         </li>
 
-                        <li class="nav-item px-5">
+                        <li class="nav-item px-5 d-block d-md-none">
                             <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
                         </li>
 
                         {% else %}
 
-                        <li class="nav-item px-5">
+                        <li class="nav-item ms-md-5 px-5 d-block d-md-none">
                             <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
                         </li>
 
-                        <li class="nav-item px-5">
+                        <li class="nav-item px-5 d-block d-md-none">
                             <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
                         </li>
 
                         {% endif %}
 
-                        <li class="navbar-brand position-absolute end-0">
+                        <li class="navbar-brand position-absolute end-0 d-block d-md-none">
+                            <a href="{{ path ("app_panier") }}" class="btn btn-success">
+                                <i class="bi bi-cart"></i>
+                            </a>
+                        </li> #}
+
+                    </ul>
+                    
+                </div>
+                </div>
+                <div class="justify-content-end d-none d-md-block">
+                <ul class="navbar-nav">
+                                            {% if app.user %}
+
+                        <li class="nav-item px-4">
+                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
+                        </li>
+
+                        <li class="nav-item px-4">
+                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
+                        </li>
+
+                        {% else %}
+
+                        <li class="nav-item ms-md-5 px-4">
+                            <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
+                        </li>
+
+                        <li class="nav-item px-4">
+                            <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
+                        </li>
+
+                        {% endif %}
+
+                        <li class="navbar-brand">
                             <a href="{{ path ("app_panier") }}" class="btn btn-success">
                                 <i class="bi bi-cart"></i>
                             </a>
                         </li>
-
-                    </ul>
-                </div>
+                        </ul>
                 </div>
             </nav>
             <div id="parent">
                 <div id="banniere" class="row g-0">
                     <video id="video" class="col-12" src="{{ asset ('img/video/video_the_district.webm') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
                 </div>
-                <div id="recherche" class="d-none d-sm-flex">
+                <div id="recherche" class="d-none d-sm-flex position-relative">
                     <form class="col-12" action="script/script_recherche.php" role="search">
                         <input class="form-control me-2" type="search" name="recherche" placeholder="Recherche..." aria-label="Search">
                     </form>
+                    <div class="position-absolute bottom-0 col-12">
+                            {% include 'partiales/flash.html.twig' %}
+                    </div>
                 </div>
+                        {# <div class="position-absolute bottom-50 end-50">
+                            {% include 'partiales/flash.html.twig' %}
+                        </div> #}
             </div>
     <body>
+    <div class="d-flex">
     {% include 'partiales/flash.html.twig' %}
-
+    </div>
         {% block body %}{% endblock %}
 
         <footer class="p-0 g-0">

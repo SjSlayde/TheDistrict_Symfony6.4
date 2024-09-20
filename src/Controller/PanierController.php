@@ -60,7 +60,7 @@ class PanierController extends AbstractController
     {
         // $session->remove('panier');
         $this->PS->DeleteAllDish();
-
+        $this->addFlash('success','Votre panier a été vidées');
         return $this->redirectToRoute('app_panier');
     }
 }
