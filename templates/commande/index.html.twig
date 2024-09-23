@@ -4,58 +4,88 @@
 
 {% block body %}
 
-        {{ form_errors(form) }}
+        {{ form_errors(formAdresse) }}
 
-        {{ form_start(form) }}
+        {{ form_start(formAdresse) }}
         
             <div class='container mt-4'>
                 <div class='row justify-content-center'>
-                    <h1>Adresse de livraison</h1>
+                    <h1>Adresse de livraison : </h1>
 
                     <div class="col-12 mb-3">
-                        {{ form_row(form.nom) }}
+                        {{ form_row(formAdresse.nom) }}
                     </div>
                 
                     <div class="col-12 mb-3">
-                        {{ form_row(form.prenom) }}
+                        {{ form_row(formAdresse.prenom) }}
                     </div>
                 
                     <div class="col-12 mb-3">
-                        {{ form_row(form.telephone) }}
+                        {{ form_row(formAdresse.telephone) }}
                     </div>
                 
                     <div class="col-12 mb-3">
-                        {{ form_row(form.adresse) }}
+                        {{ form_row(formAdresse.adresse) }}
                     </div>
                     
                     <div class="col-6 mb-3">
-                        {{ form_row(form.cp) }}
+                        {{ form_row(formAdresse.cp) }}
                     </div>
                     
                     <div class="col-6 mb-3">
-                        {{ form_row(form.ville) }}
+                        {{ form_row(formAdresse.ville) }}
                     </div>
+
+
+                        {# {{ form_start(formPaiement) }}
+        <div class='container mt-4'>
+            <div class='row justify-content-center position-relative'>
+
+            <h1>Moyen de paiement : </h1>
+
+                <div class="col-6 mb-3">
+                    {{ form_row(formPaiement.numeros_de_carte) }}
+                </div>
+
+                <div class="col-6 mb-3">
+                    {{ form_row(formPaiement.expiration) }}
+                </div>
+
+                <div class="col-12 mb-3">
+                    {{ form_row(formPaiement.code_securite) }}
+                </div>
+
+                <div class="col-12 mb-3">
+                    {{ form_row(formPaiement.nom_titulaire) }}
+                </div>
+                
+            </div>
+        </div>
+        
+    {{ form_end(formPaiement) }} #}
                 
                     <div class="col-6 mb-3">
                         <div>
-                            <a href="{{ path ('app_pdf') }}" title="politique_de_confidentialité">
-                                {{ form_label(form.agreeTerms) }}
+                            <a href="{{ path ('app_pdf') }}" title="po_confidentialité">
+                                {{ form_label(formAdresse.agreeTerms) }}
                             </a>
-                            {{ form_widget(form.agreeTerms) }}
-                            {{ form_help(form.agreeTerms) }}
-                            <div class="form-error">
-                                {{ form_errors(form.agreeTerms) }}
+                            {{ form_widget(formAdresse.agreeTerms) }}
+                            {{ form_help(formAdresse.agreeTerms) }}
+                            <div class="formAdresse-error">
+                                {{ form_errors(formAdresse.agreeTerms) }}
                             </div>
                         </div>
                     </div>
 
                     <div class="col-6 mb-3">
-                        {{ form_row(form.save) }}
+                        {{ form_row(formAdresse.save) }}
                     </div>
 
                 </div>
             </div>
 
-        {{ form_end(form) }}
+        {{ form_end(formAdresse) }}
+
+                {{ form_errors(formAdresse) }}
 
 {% endblock %}

@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\Detail;
+use App\Form\MoyenPaimentFormType;
 use App\Manager\CommandeManager;
 use App\Form\CommandeType;
 use App\Manager\DetailManager;
+use App\Repository\MoyenPaiementRepository;
 use App\Repository\PlatRepository;
 use App\Service\PanierService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,15 +18,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 class CommandeController extends AbstractController
 {
     private $PlatRepo;
+
+    private $MPayRepo;
     private $ps;
     private $cm;
     private $dm;
 
-    public function __construct(PlatRepository $PlatRepo, PanierService $panierService,CommandeManager $cm,DetailManager $dm){
+    public function __construct(PlatRepository $PlatRepo, PanierService $panierService,CommandeManager $cm,DetailManager $dm,MoyenPaiementRepository $MPayRepo){
         $this->PlatRepo = $PlatRepo;
+        $this->MPayRepo = $MPayRepo;
         $this->ps = $panierService;
         $this->cm = $cm;
         $this->dm = $dm;
@@ -42,10 +48,15 @@ class CommandeController extends AbstractController
         /** @var \App\Entity\Utilisateur $user */
         $user = $this->getUser();
 
-        $form = $this->createForm(CommandeType::class, $user);
-        $form->handleRequest($request);
+        $formAdresse= $this->createForm(CommandeType::class, $user);
+        $formAdresse->handleRequest($request);
+        
+        // $MP = $this->MPayRepo->find($user);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        // $formPaiement = $this->createForm(MoyenPaimentFormType::class, $MP);
+        // $formPaiement->handleRequest($request);
+
+        if ($formAdresse->isSubmitted() && $formAdresse->isValid()){
 
             $total = $this->ps->getTotal();
 
@@ -75,7 +86,8 @@ class CommandeController extends AbstractController
             return $this->redirectToRoute('app_index');
     } else {
         return $this->render('commande/index.html.twig',[
-            'form' => $form
+            'formAdresse' => $formAdresse,
+            // 'formPaiement' => $formPaiement,
         ]);
     }        }else {
         return $this->redirectToRoute('app_panier');

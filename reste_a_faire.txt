@@ -16,8 +16,9 @@ trouver commnent mettre dans le mail le Detail des plats commander(une jointure 
 
 ------------------------------------------------------------------------
 
+(fait sur l'espace client)
 L'utilisateur doit être connecté pour accéder à cette page,
-(a reflechir sur la mise en place du paiement et de l'adresse de facturation(problablement via des table adresse facturation et paiement)) il doit pouvoir choisir :
+il doit pouvoir choisir :
 
     l'adresse de livraison(nouvelle table adresse lie a utilisateur)
     l'adresse de facturation(adresse dans la table utilisateur)
