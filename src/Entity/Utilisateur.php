@@ -59,9 +59,23 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'utilisateur')]
     private Collection $commande;
 
+    /**
+     * @var Collection<int, AdresseLivraison>
+     */
+    #[ORM\OneToMany(targetEntity: AdresseLivraison::class, mappedBy: 'utilisateur')]
+    private Collection $adresseLivraisons;
+
+    /**
+     * @var Collection<int, MoyenPaiement>
+     */
+    #[ORM\OneToMany(targetEntity: MoyenPaiement::class, mappedBy: 'utilisateur')]
+    private Collection $moyenPaiements;
+
     public function __construct()
     {
         $this->commande = new ArrayCollection();
+        $this->adresseLivraisons = new ArrayCollection();
+        $this->moyenPaiements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -234,6 +248,66 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($commande->getUtilisateur() === $this) {
                 $commande->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AdresseLivraison>
+     */
+    public function getAdresseLivraisons(): Collection
+    {
+        return $this->adresseLivraisons;
+    }
+
+    public function addAdresseLivraison(AdresseLivraison $adresseLivraison): static
+    {
+        if (!$this->adresseLivraisons->contains($adresseLivraison)) {
+            $this->adresseLivraisons->add($adresseLivraison);
+            $adresseLivraison->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresseLivraison(AdresseLivraison $adresseLivraison): static
+    {
+        if ($this->adresseLivraisons->removeElement($adresseLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($adresseLivraison->getUtilisateur() === $this) {
+                $adresseLivraison->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MoyenPaiement>
+     */
+    public function getMoyenPaiements(): Collection
+    {
+        return $this->moyenPaiements;
+    }
+
+    public function addMoyenPaiement(MoyenPaiement $moyenPaiement): static
+    {
+        if (!$this->moyenPaiements->contains($moyenPaiement)) {
+            $this->moyenPaiements->add($moyenPaiement);
+            $moyenPaiement->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMoyenPaiement(MoyenPaiement $moyenPaiement): static
+    {
+        if ($this->moyenPaiements->removeElement($moyenPaiement)) {
+            // set the owning side to null (unless already changed)
+            if ($moyenPaiement->getUtilisateur() === $this) {
+                $moyenPaiement->setUtilisateur(null);
             }
         }
 

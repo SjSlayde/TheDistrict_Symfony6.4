@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Moyen de paiement{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+        <div class='container mt-4'>
+            <div class='row justify-content-center position-relative'>
+
+                <div class="col-6 mb-3">
+                    {{ form_row(form.numeros_de_carte) }}
+                </div>
+
+                <div class="col-6 mb-3">
+                    {{ form_row(form.expiration) }}
+                </div>
+
+                <div class="col-12 mb-3">
+                    {{ form_row(form.code_securite) }}
+                </div>
+
+                <div class="col-12 mb-3">
+                    {{ form_row(form.nom_titulaire) }}
+                </div>
+
+                <div class="col position-relative mt-5">
+                    <button type="submit" class="btn position-absolute bottom-0 end-0">Enregistrer</button>
+                </div>
+                
+            </div>
+        </div>
+        
+    {{ form_end(form) }}
+
+
+{% endblock %}

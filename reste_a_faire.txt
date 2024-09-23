@@ -12,11 +12,16 @@ Mettre et utiliser mes images dans le Dossier public(in progress)
 
 ------------------------------------------------------------------------
 
-L'utilisateur doit être connecté po(a reflechir sur la mise en place du paiement et de l'adresse de facturation(problablement via des table adresse facturation et paiement))ur accéder à cette page, il doit pouvoir choisir :
+trouver commnent mettre dans le mail le Detail des plats commander(une jointure ne fonctionne pas)
 
-    l'adresse de livraison
-    l'adresse de facturation
-    le mode de paiement
+------------------------------------------------------------------------
+
+L'utilisateur doit être connecté pour accéder à cette page,
+(a reflechir sur la mise en place du paiement et de l'adresse de facturation(problablement via des table adresse facturation et paiement)) il doit pouvoir choisir :
+
+    l'adresse de livraison(nouvelle table adresse lie a utilisateur)
+    l'adresse de facturation(adresse dans la table utilisateur)
+    le mode de paiement(juste un form ou l'utilisateur dans choisir si il regle en espece ou en CB)
 
 ------------------------------------------------------------------------
 
