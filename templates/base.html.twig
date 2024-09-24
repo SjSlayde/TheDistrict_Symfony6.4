@@ -112,7 +112,7 @@
                     <video id="video" class="col-12" src="{{ asset ('img/video/video_the_district.webm') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
                 </div>
                 <div id="recherche" class="d-none d-sm-flex position-relative">
-                    <form class="col-12" action="script/script_recherche.php" role="search">
+                    <form class="col-12" action="{{ path ("app_recherche") }}" role="search" method="GET">
                         <input class="form-control me-2" type="search" name="recherche" placeholder="Recherche..." aria-label="Search">
                     </form>
                     <div class="position-absolute bottom-0 col-12">

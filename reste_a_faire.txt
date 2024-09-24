@@ -40,3 +40,7 @@ Mettre en place une API Restfull(chapitre suivant)
 ------------------------------------------------------------------------
 
 React(chapitre suivant)
+
+------------------------------------------------------------------------
+
+adapter mon code pour la barre de recherche

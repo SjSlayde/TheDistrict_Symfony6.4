@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\SearchService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -70,5 +71,27 @@ class CatalogueController extends AbstractController
             'controller_name' => 'CatalogueController',
             'category' => $category,
         ]);
+    }
+
+    #[Route('/recherche', name: 'app_recherche')]
+    public function ShowRecherche(SearchService  $searchService): Response
+    {
+        $recherche = $_GET['recherche'];
+
+        if($searchService->SearchPlat($recherche) != null){
+            $plat = $searchService->SearchPlat($recherche);
+            return $this->render('catalogue/dish.html.twig', [
+                'controller_name' => 'CatalogueController',
+                'plat' => $plat,
+            ]);
+        }elseif($searchService->SearchCategorie($recherche) != null){
+            $category = $searchService->SearchCategorie($recherche);
+            return $this->render('catalogue/category.html.twig', [
+                'controller_name' => 'CatalogueController',
+                'category' => $category,
+            ]);
+        } else {
+            return $this->redirectToRoute('app_index');
+        }
     }
 }
