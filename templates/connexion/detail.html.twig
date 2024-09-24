@@ -6,10 +6,10 @@
 <div class="container">
 <h1 class="my-2">Detail du compte</h1>
     <div class="row justify-content-around">
-        <h2 class="col-8">mes informations personnel :</h2>
+        <h2 class="col-12">mes informations personnel :</h2>
        
-        <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newadresse', {nom: app.user.nom,prenom: app.user.prenom}) }}">
-        <button class="btn btn-primary">Ajouter un adresse de livraison</button></a>
+        {# <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newadresse', {nom: app.user.nom,prenom: app.user.prenom}) }}">
+        <button class="btn btn-primary">Ajouter un adresse de livraison</button></a> #}
 
         <div class="card col-4 text-bg-primary my-3">
             <div class="card-header">Adresse facturation</div>
@@ -42,16 +42,17 @@
                 <button class="btn btn-danger">Supprimer</button></a>
             </div>
             </div>
-        </div>
-    
+        </div>{% else %}
+                <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center position-absolute top-0 end-0" href="{{ path ('app_editprofil', {nom: app.user.nom,prenom: app.user.prenom}) }}">
+                <button class="btn btn-primary">Modifier</button></a>
     {% endfor %}
 
     </div>
 
     <div class="row justify-content-around">
-        <h2 class="col-8">mes moyens de paiements</h2>
-        <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newmoyenpaiement', {nom: app.user.nom,prenom: app.user.prenom}) }}">
-        <button class="btn btn-primary">Ajouter un myen de paiement</button></a>
+        <h2 class="col-12">mes cartes bancaire</h2>
+        {# <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newmoyenpaiement', {nom: app.user.nom,prenom: app.user.prenom}) }}">
+        <button class="btn btn-primary">Ajouter une carte bancaire</button></a> #}
 
     {% for paiement in user.moyenPaiements %}
     
@@ -69,7 +70,9 @@
                 <button class="btn btn-danger">Supprimer</button></a>
             </div>
             </div>
-        </div>
+        </div>{% else %}
+                <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newmoyenpaiement', {nom: app.user.nom,prenom: app.user.prenom}) }}">
+        <button class="btn btn-primary">Ajouter une carte bancaire</button></a>
     
     {% endfor %}
 

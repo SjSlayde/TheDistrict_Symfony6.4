@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\MoyenPaiement;
 use App\Entity\Utilisateur;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -75,7 +76,16 @@ class MoyenPaimentFormType extends AbstractType
                     'minMessage' => 'minimum {{ limit }} characters',
                     'max' => 4096,
                 ])]
-                ]);
+                ])
+                // ->add('save', SubmitType::class, [
+                //     'label' => 'Commander',
+                //     'attr' => [
+                //         'class' => 'btn btn-success color-315F72 rounded-pill '
+                //     ],
+                //     'row_attr' => [
+                //         'class' => 'd-flex justify-content-end'
+                //     ]
+                //     ]);
 
     //             ->add('utilisateur', EntityType::class, [
     //                 'class' => Utilisateur::class,

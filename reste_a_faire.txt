@@ -16,13 +16,13 @@ trouver commnent mettre dans le mail le Detail des plats commander(une jointure 
 
 ------------------------------------------------------------------------
 
-(fait sur l'espace client)
+(fonctionnel mais essayer de faire un front plus clean)
 L'utilisateur doit être connecté pour accéder à cette page,
 il doit pouvoir choisir :
 
     l'adresse de livraison(nouvelle table adresse lie a utilisateur)
     l'adresse de facturation(adresse dans la table utilisateur)
-    le mode de paiement(juste un form ou l'utilisateur dans choisir si il regle en espece ou en CB)
+    le mode de paiement(nouvelle table Moyen de paiement lie a utilisateur)
 
 ------------------------------------------------------------------------
 

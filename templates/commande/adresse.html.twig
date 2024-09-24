@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}{{ titre }}{% endblock %}
 
 {% block body %}
 
@@ -10,7 +10,7 @@
         
             <div class='container mt-4'>
                 <div class='row justify-content-center'>
-                    <h1>Adresse de livraison : </h1>
+                    <h1>{{ titre }} : </h1>
 
                     <div class="col-12 mb-3">
                         {{ form_row(formAdresse.nom) }}
@@ -35,34 +35,6 @@
                     <div class="col-6 mb-3">
                         {{ form_row(formAdresse.ville) }}
                     </div>
-
-
-                        {# {{ form_start(formPaiement) }}
-        <div class='container mt-4'>
-            <div class='row justify-content-center position-relative'>
-
-            <h1>Moyen de paiement : </h1>
-
-                <div class="col-6 mb-3">
-                    {{ form_row(formPaiement.numeros_de_carte) }}
-                </div>
-
-                <div class="col-6 mb-3">
-                    {{ form_row(formPaiement.expiration) }}
-                </div>
-
-                <div class="col-12 mb-3">
-                    {{ form_row(formPaiement.code_securite) }}
-                </div>
-
-                <div class="col-12 mb-3">
-                    {{ form_row(formPaiement.nom_titulaire) }}
-                </div>
-                
-            </div>
-        </div>
-        
-    {{ form_end(formPaiement) }} #}
                 
                     <div class="col-6 mb-3">
                         <div>
@@ -71,7 +43,7 @@
                             </a>
                             {{ form_widget(formAdresse.agreeTerms) }}
                             {{ form_help(formAdresse.agreeTerms) }}
-                            <div class="formAdresse-error">
+                            <div class="form-error">
                                 {{ form_errors(formAdresse.agreeTerms) }}
                             </div>
                         </div>
@@ -80,7 +52,6 @@
                     <div class="col-6 mb-3">
                         {{ form_row(formAdresse.save) }}
                     </div>
-
                 </div>
             </div>
 

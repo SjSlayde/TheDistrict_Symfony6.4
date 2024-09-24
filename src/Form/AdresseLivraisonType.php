@@ -6,9 +6,12 @@ use App\Entity\AdresseLivraison;
 use App\Entity\Utilisateur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class AdresseLivraisonType extends AbstractType
 {
@@ -45,10 +48,24 @@ class AdresseLivraisonType extends AbstractType
                     'class' => 'col-3 form-control'
                 ]
             ])
-//             ->add('utilisateur', EntityType::class, [
-//                 'class' => Utilisateur::class,
-// 'choice_label' => 'id',
-//             ])
+            ->add('agreeTerms', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => 'Veuillez accepter les conditions générales d\'utilisation',
+                    'constraints' => [
+                        new IsTrue([
+                            'message' => 'You should agree to our terms.',
+                        ]),
+                ],
+                ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Suivant',
+                'attr' => [
+                    'class' => 'btn btn-success color-315F72 rounded-pill '
+                ],
+                'row_attr' => [
+                    'class' => 'd-flex justify-content-end'
+                ]
+                ])
         ;
     }
 
