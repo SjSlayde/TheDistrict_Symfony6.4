@@ -48,15 +48,15 @@ class AdresseLivraisonType extends AbstractType
                     'class' => 'col-3 form-control'
                 ]
             ])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //         'mapped' => false,
-            //         'label' => 'Veuillez accepter les conditions générales d\'utilisation',
-            //         'constraints' => [
-            //             new IsTrue([
-            //                 'message' => 'You should agree to our terms.',
-            //             ]),
-            //     ],
-            //     ])
+            ->add('agreeTerms', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => 'Veuillez accepter les conditions générales d\'utilisation',
+                    'constraints' => [
+                        new IsTrue([
+                            'message' => 'You should agree to our terms.',
+                        ]),
+                ],
+                ])
             ->add('save', SubmitType::class, [
                 'label' => 'Suivant',
                 'attr' => [

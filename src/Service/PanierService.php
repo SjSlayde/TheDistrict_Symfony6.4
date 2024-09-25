@@ -108,7 +108,5 @@ class PanierService
         $session = $this->requestStack->getSession();
         // $session->remove('panier');
         $session->set('panier', []);
-
     }
-
 }
