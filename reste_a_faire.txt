@@ -43,4 +43,4 @@ React(chapitre suivant)
 
 ------------------------------------------------------------------------
 
-adapter mon code pour la barre de recherche
+adapter mon code pour la barre de recherche(fonctionnel)

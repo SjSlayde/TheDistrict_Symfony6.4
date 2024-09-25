@@ -43,8 +43,8 @@
             </div>
             </div>
         </div>{% else %}
-                <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center position-absolute top-0 end-0" href="{{ path ('app_editprofil', {nom: app.user.nom,prenom: app.user.prenom}) }}">
-                <button class="btn btn-primary">Modifier</button></a>
+                <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newadresse', {nom: app.user.nom,prenom: app.user.prenom}) }}">
+                    <button class="btn btn-primary">Ajouter un adresse de livraison</button></a>
     {% endfor %}
 
     </div>

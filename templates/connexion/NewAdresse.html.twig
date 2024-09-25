@@ -33,8 +33,15 @@
                 </div>
 
                 <div class="col position-relative mt-5">
-                    <button type="submit" class="btn position-absolute bottom-0 end-0">Enregistrer</button>
+                    {{ form_row(form.save, {
+                        'label': 'Enregistrer',
+                        'label_attr': {'class': 'btn position-absolute bottom-0 end-0'}}
+                        )}}
                 </div>
+
+                {# <div class="col position-relative mt-5">
+                    <button type="submit" class="btn position-absolute bottom-0 end-0">Enregistrer</button>
+                </div> #}
                 
             </div>
         </div>

@@ -29,7 +29,8 @@ class RegistrationController extends AbstractController
     private $commandeRepository;
     private $detailsRepository;
 
-    public function __construct(UtilisateurRepository $utilisateurRepository,CommandeRepository $commandeRepository,DetailRepository $detailsRepository)
+    public function __construct(UtilisateurRepository $utilisateurRepository,CommandeRepository $commandeRepository,
+                                DetailRepository $detailsRepository)
     {
         $this->utilisateurRepository = $utilisateurRepository;
         $this->commandeRepository = $commandeRepository;
@@ -256,7 +257,8 @@ class RegistrationController extends AbstractController
         }
 
         #[Route('/{nom}-{prenom}/remove_moyen_paiemen-{id}', name: 'app_suppmoyenpaiement', requirements: ['id' => '\d+'])]
-        public function removemoyenpaiemen(Request $request,EntityManagerInterface $em,MoyenPaiementRepository  $moyenPaiementRepository,int $id): Response
+        public function removemoyenpaiemen(Request $request,EntityManagerInterface $em,
+                                        MoyenPaiementRepository  $moyenPaiementRepository,int $id): Response
         {
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
