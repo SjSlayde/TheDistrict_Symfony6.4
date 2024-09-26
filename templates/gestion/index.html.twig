@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}  
+    <div class="container justify-content-center mt-3">
+            
+                <div class="row">
+                <div class="fs-1 col-8 ms-md-5">Les Categories :</div>
+                
+                <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col" href="#">
+                    <button class="btn btn-primary">Ajouter une categorie</button></a>
+
+                
+                
+                    {% for categorie in category %}
+
+                                <div class="card col-md-4 flex-row mt-3 mx-md-5" style="width: 35rem">
+                                            <img src="{{ asset ('img/category/' ~ categorie.image) }}" class="rounded-3 img-fluid m-auto" alt="{{ categorie.libelle }}'_food" style="width: 15rem; height: fit-content;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-md-4">{{ categorie.libelle }}</h5>
+                                            <div class="d-flex justify-content-end">
+                                            <a href="#" class="d-none d-md-block btn btn-primary btn-lg position-absolute bottom-0 end-0">Modifier</a>
+                                            <a href="#" class="d-block d-md-none btn btn-primary btn-lg position-absolute bottom-0 start-0">Modifier</a>
+                                            </div>
+                                        </div>
+                                </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="row mt-5">
+                    <h2 class="fs-1 col-8 ms-md-5">Nos plats :</h2>
+                    <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col" href="#">
+                        <button class="btn btn-primary">Ajouter un plat</button></a>
+
+                            {% for plats in plat %}
+
+                          
+                                <div class="card col-md-4 flex-row mt-3 mx-md-5" style="width: 35rem">
+                                            <img src="{{ asset ('img/food/' ~ plats.image) }}" class="rounded-3 img-fluid m-auto" alt="{{ plats.libelle }}'_food" style="width: 10rem; height: fit-content;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-md-4">{{ plats.libelle }}</h5>
+                                            <p class="card-text">{{ plats.description }}</p>
+                                            <p class="card-text">{{ plats.prix}}</p>
+                                            <div class="d-flex justify-content-end">
+                                            <a href="{{ path ("app_ajout_panier" , {id: plats.id}) }}" class="d-none d-md-block btn btn-primary btn-lg position-absolute bottom-0 end-0">Modifier</a>
+                                            <a href="{{ path ("app_ajout_panier" , {id: plats.id}) }}" class="d-block d-md-none btn btn-primary btn-lg position-absolute bottom-0 start-0">Modifier</a>
+                                            </div>
+                                        </div>
+                                </div>
+
+                            {% endfor %}
+
+                </div>
+                </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -36,9 +36,6 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commande')]
     private ?Utilisateur $utilisateur = null;
 
-
-
-
     public function __construct()
     {
         $this->details = new ArrayCollection();
