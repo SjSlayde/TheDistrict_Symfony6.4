@@ -79,12 +79,20 @@
                 <ul class="navbar-nav">
                                             {% if app.user %}
 
+                    {% if is_granted('ROLE_CLIENT') %}
                         <li class="nav-item px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
+                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="user">{{ app.user.nom }}</a>
                         </li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_CHEF') %}
+                        <li class="nav-item px-4">
+                            <a class="textnav nav-link {{ app.current_route == 'app_gestion' ? 'active' : ''}}" href="{{ path ('app_gestion') }}" title="gestion">Gestion</a>
+                        </li>
+                    {% endif %}
 
                         <li class="nav-item px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
+                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="logout">Deconnexion</a>
                         </li>
 
                         {% else %}

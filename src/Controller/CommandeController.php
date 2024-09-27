@@ -84,7 +84,7 @@ class CommandeController extends AbstractController
 }}
 
 #[Route( '/commande_adresse_facturation', name: 'app_commandeFacturation')]
-   public function commandeFacturation(Request $request,SessionInterface $session): Response{
+   public function commandeFacturation(Request $request): Response{
     $panier = $this->ps->ShowPanier();
 
     if(!empty($panier) && !$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY')){
