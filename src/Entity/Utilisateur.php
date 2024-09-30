@@ -9,68 +9,85 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use ApiPlatform\Metadata\ApiResource; 
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups; 
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Groups(['read'])]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    #[Groups(['read'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['read'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['read'])]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(['read'])]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['read'])]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(['read'])]
     private ?string $cp = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['read'])]
     private ?string $ville = null;
 
     /**
      * @var Collection<int, Commande>
      */
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'utilisateur')]
+    #[Groups(['write'])]
     private Collection $commande;
 
     /**
      * @var Collection<int, AdresseLivraison>
      */
     #[ORM\OneToMany(targetEntity: AdresseLivraison::class, mappedBy: 'utilisateur')]
+    #[Groups(['write'])]
     private Collection $adresseLivraisons;
 
     /**
      * @var Collection<int, MoyenPaiement>
      */
     #[ORM\OneToMany(targetEntity: MoyenPaiement::class, mappedBy: 'utilisateur')]
+    #[Groups(['write'])]
     private Collection $moyenPaiements;
 
     public function __construct()

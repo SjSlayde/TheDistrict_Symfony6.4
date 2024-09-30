@@ -5,35 +5,47 @@ namespace App\Entity;
 use App\Repository\AdresseLivraisonRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: AdresseLivraisonRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class AdresseLivraison
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('read')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups('read')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups('read')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups('read')]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups('read')]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups('read')]
     private ?string $cp = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups('read')]
     private ?string $ville = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresseLivraisons')]
+    #[Groups('read')]
     private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int

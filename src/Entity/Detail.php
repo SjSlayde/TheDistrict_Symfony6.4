@@ -4,24 +4,32 @@ namespace App\Entity;
 
 use App\Repository\DetailRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource; 
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups; 
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: DetailRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class Detail
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $quantite = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
+    #[Groups(['read'])]
     private ?Plat $plats = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
+    #[Groups(['read'])]
     private ?Commande $commandes = null;
 
     public function getId(): ?int

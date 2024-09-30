@@ -39,7 +39,6 @@ class Plat
     #[Groups(['read'])]
     private ?string $prix = null;
 
-    // #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     #[Groups(['read','write'])]
     private ?string $image = null;
@@ -57,7 +56,7 @@ class Plat
      * @var Collection<int, Detail>
      */
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'details')]
-    #[Groups(['read'])]
+    #[Groups(['write'])]
     private Collection $details;
 
     public function __construct()

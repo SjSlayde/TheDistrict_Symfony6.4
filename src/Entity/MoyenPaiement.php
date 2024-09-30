@@ -4,19 +4,25 @@ namespace App\Entity;
 
 use App\Repository\MoyenPaiementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Metadata\ApiResource; 
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: MoyenPaiementRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class MoyenPaiement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('read')]
     private ?int $id = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups('read')]
     // #[Assert\CardScheme(
     //     schemes: [Assert\CardScheme::MASTERCARD],
     //     message: 'Votre carte de paiement est invalide(Mastercard obligatoire)',
@@ -24,15 +30,19 @@ class MoyenPaiement
     private ?string $numeros_de_carte = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups('read')]
     private ?string $expiration = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups('read')]
     private ?string $code_securite = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('read')]
     private ?string $nom_titulaire = null;
 
     #[ORM\ManyToOne(inversedBy: 'moyenPaiements')]
+    #[Groups('read')]
     private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int

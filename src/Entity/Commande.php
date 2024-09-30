@@ -8,32 +8,42 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class Commande
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('read')]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups('read')]
     private ?\DateTimeInterface $date_commande = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    #[Groups('read')]
     private ?string $total = null;
 
     #[ORM\Column]
+    #[Groups('read')]
     private ?int $etat = null;
 
     /**
      * @var Collection<int, Detail>
      */
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'commandes')]
+    #[Groups('write')]
     private Collection $details;
 
     #[ORM\ManyToOne(inversedBy: 'commande')]
+    #[Groups('read')]
     private ?Utilisateur $utilisateur = null;
 
     public function __construct()
