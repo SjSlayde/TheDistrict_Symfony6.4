@@ -9,43 +9,55 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Metadata\ApiResource; 
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+)]
 class Plat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
+    #[Groups(['read'])]
     private ?string $libelle = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['read'])]
     private ?string $description = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    #[Groups(['read'])]
     private ?string $prix = null;
 
-    #[Assert\NotBlank]
+    // #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
+    #[Groups(['read','write'])]
     private ?string $image = null;
 
     #[Assert\NotBlank]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?bool $active = null;
 
     #[ORM\ManyToOne(inversedBy: 'plats')]
+    #[Groups(['read'])]
     private ?Categorie $categorie = null;
 
     /**
      * @var Collection<int, Detail>
      */
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'details')]
+    #[Groups(['read'])]
     private Collection $details;
 
     public function __construct()

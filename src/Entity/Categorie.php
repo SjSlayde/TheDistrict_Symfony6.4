@@ -22,7 +22,7 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
-    #[Assert\NotBlank]
+    // #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 

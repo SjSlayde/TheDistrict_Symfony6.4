@@ -29,8 +29,8 @@ il doit pouvoir choisir :
 Les rôles de l'application seront définis de la façon suivante :
 rôle 	        description
 
-ROLE_ADMIN 	    Accès à toutes les pages
-ROLE_CHEF 	    Accès au catalogue et à la gestion des plats(a faire via un bouton a la place du bouton panier)
+ROLE_ADMIN 	    Accès à toutes les pages(lui permettre de modifier l'etat des commande)
+ROLE_CHEF 	    Accès au catalogue et à la gestion des plats(fait)
 ROLE_CLIENT 	Accès au catalogue et à la validation de la commande(fait)
 
 ------------------------------------------------------------------------

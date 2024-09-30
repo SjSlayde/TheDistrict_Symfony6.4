@@ -60,6 +60,14 @@ class GestionController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()){
+            /**
+             * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+             */
+            $file = $form->get('image')->getData();
+            $file->getClientOriginalName();
+            // dd($file->getClientOriginalName());
+            $file->move($this->getParameter('kernel.project_dir'). '/assets/img/food',$file->getClientOriginalName());
+            $plat->setImage($file->getClientOriginalName());
             $this->em->persist($plat);
             $this->em->flush();
     
@@ -88,6 +96,14 @@ class GestionController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()){
+                        /**
+             * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+             */
+            $file = $form->get('image')->getData();
+            $file->getClientOriginalName();
+            // dd($file->getClientOriginalName());
+            $file->move($this->getParameter('kernel.project_dir'). '/assets/img/category',$file->getClientOriginalName());
+            $cat->setImage($file->getClientOriginalName());
             $this->em->persist($cat);
             $this->em->flush();
     
@@ -97,5 +113,33 @@ class GestionController extends AbstractController
             'titre' => $titre,
             'form' => $form
         ]);}
+    }
+
+    #[Route('/gestion/categorie-{id}/remove', name: 'app_gestion_remove_categorie', requirements:['id'=>'\d+'])]
+    public function gestionDeleteCategorie(Request $request,$id): Response
+    {
+    $this->denyAccessUnlessGranted('ROLE_CHEF');
+
+    $cat = $this->categoryRepo->findOneBy(['id' => $id]);
+    $plats = $this->platRepo->findBy(['categorie' => $cat->getId()]);
+    foreach($plats as $plat){
+        $this->em->remove($plat);
+    }
+    $this->em->remove($cat);
+    $this->em->flush();
+    
+    return $this->redirectToRoute('app_gestion');
+    }
+
+    #[Route('/gestion/plat-{id}/remove', name: 'app_gestion_remove_plat', requirements:['id'=>'\d+'])]
+    public function gestionDeletePlat(Request $request,$id): Response
+    {
+    $this->denyAccessUnlessGranted('ROLE_CHEF');
+
+    $plat = $this->platRepo->findOneBy(['id' => $id]);
+    $this->em->remove($plat);
+    $this->em->flush();
+    
+    return $this->redirectToRoute('app_gestion');
     }
 }
