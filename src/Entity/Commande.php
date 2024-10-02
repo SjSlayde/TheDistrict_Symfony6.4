@@ -11,10 +11,10 @@ use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
-#[ApiResource(
-    normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']],
-)]
+// #[ApiResource(
+//     normalizationContext: ['groups' => ['read']],
+//     denormalizationContext: ['groups' => ['write']],
+// )]
 class Commande
 {
     #[ORM\Id]

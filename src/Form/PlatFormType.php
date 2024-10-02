@@ -57,7 +57,7 @@ class PlatFormType extends AbstractType
                 'label' => 'categorie :'
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Commander',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-success color-315F72 rounded-pill '
                 ],
@@ -65,37 +65,8 @@ class PlatFormType extends AbstractType
                     'class' => 'd-flex justify-content-end'
                 ]
             ])
-            // ->addEventListener(FormEvents::PRE_SUBMIT, $this->DownloadImage(...))
         ;
     }
-
-    // public function DownloadImage(PreSubmitEvent $event){
-    //     $data = $event->getData();
-    //     if (empty($data['image'])){
-    //         //$cheminimage = uniqid() . '_' . $data['image']['name'];
-   
-    //         $destination = '../../assets/img/food/' . $data['image']['name'];
-        
-    //         // Déplacement du fichier uploadé
-        
-    //         if (move_uploaded_file($data['image']['tmp_name'], $destination)) {
-        
-    //             echo 'Fichier uploadé avec succès !';
-        
-    //         } else {
-        
-    //             echo 'Erreur lors de l\'upload du fichier.';
-        
-    //         }
-    //         // $someNewFilename = ...
-    //         var_dump($data);
-            
-    //         $data['image']->move($destination, $data['image']['name']);
-    
-    //         $data['image'] = $data['image']['name'];
-    //         $event->setData($data);
-    //     }
-    // }
 
     public function configureOptions(OptionsResolver $resolver): void
     {

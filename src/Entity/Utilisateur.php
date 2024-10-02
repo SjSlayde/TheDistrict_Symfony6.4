@@ -15,11 +15,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-#[ApiResource(
-    security: "is_granted('ROLE_ADMIN')",
-    normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']],
-)]
+// #[ApiResource(
+//     security: "is_granted('ROLE_ADMIN')",
+//     normalizationContext: ['groups' => ['read']],
+//     denormalizationContext: ['groups' => ['write']],
+// )]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]

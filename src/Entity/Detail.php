@@ -8,10 +8,10 @@ use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups; 
 
 #[ORM\Entity(repositoryClass: DetailRepository::class)]
-#[ApiResource(
-    normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']],
-)]
+// #[ApiResource(
+//     normalizationContext: ['groups' => ['read']],
+//     denormalizationContext: ['groups' => ['write']],
+// )]
 class Detail
 {
     #[ORM\Id]

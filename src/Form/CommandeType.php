@@ -64,7 +64,7 @@ class CommandeType extends AbstractType
                 ],
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Commander',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-success color-315F72 rounded-pill '
                 ],

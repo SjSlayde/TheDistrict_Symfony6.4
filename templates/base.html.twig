@@ -1,172 +1,173 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="shortcut icon" type="image/png" href="{{ asset ('img/the_district_brand/favicon.png')}}"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="shortcut icon" type="image/png" href="{{ asset ('img/the_district_brand/favicon.png')}}"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"> {% block stylesheets %}{% endblock %}
 
-       
-        {% block stylesheets %}
-        {% endblock %}
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+		<a class="navbar-brand" href="{{ path ('app_index') }}"><img src="{{ asset ('img/the_district_brand/logo.png') }}" width="50" class="d-inline-block align-text-top" alt="navicon"></a>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-            </head>
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-                    <a class="navbar-brand" href="{{ path ('app_index') }}"><img src="{{ asset ('img/the_district_brand/logo.png') }}" width="50" class="d-inline-block align-text-top" alt="navicon"></a>
-                    
-                    <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-                <div class='jutify-content-center'>
-                    <ul class="navbar-nav">
+		<button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-                        <li class="nav-item px-5">
-                            <a class="textnav nav-link {{ app.current_route == 'app_index' ? 'active' : ''}}" href="{{ path ('app_index') }}" title="Accueil">Accueil</a>
-                        </li>
+		<div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+			<div class='jutify-content-center'>
+				<ul class="navbar-nav">
 
-                        <li class="nav-item px-5">
-                            <a class="textnav nav-link {{ app.current_route == 'app_category' ? 'active' : ''}}" href="{{ path ('app_category') }}" title="Categorie">Categorie</a>
-                        </li>
+					<li class="nav-item px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_index' ? 'active' : ''}}" href="{{ path ('app_index') }}" title="Accueil">Accueil</a>
+					</li>
 
-                        <li class="nav-item px-5">
-                            <a class="textnav nav-link {{ app.current_route == 'app_dish' ? 'active' : ''}}" href="{{ path ('app_dish') }}" title="Plat">Plat</a>
-                        </li>
+					<li class="nav-item px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_category' ? 'active' : ''}}" href="{{ path ('app_category') }}" title="Categorie">Categorie</a>
+					</li>
 
-                        <li class="nav-item px-5">
-                            <a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">Contact</a>
-                        </li>
+					<li class="nav-item px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_dish' ? 'active' : ''}}" href="{{ path ('app_dish') }}" title="Plat">Plat</a>
+					</li>
 
-                        {# {% if app.user %}
+					<li class="nav-item px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">Contact</a>
+					</li>
 
-                        <li class="nav-item px-5 d-block d-md-none">
-                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
-                        </li>
+					{# {% if app.user %}
+					
+					                        <li class="nav-item px-5 d-block d-md-none">
+					                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
+					                        </li>
+					
+					                        <li class="nav-item px-5 d-block d-md-none">
+					                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
+					                        </li>
+					
+					                        {% else %}
+					
+					                        <li class="nav-item ms-md-5 px-5 d-block d-md-none">
+					                            <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
+					                        </li>
+					
+					                        <li class="nav-item px-5 d-block d-md-none">
+					                            <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
+					                        </li>
+					
+					                        {% endif %}
+					
+					                        <li class="navbar-brand position-absolute end-0 d-block d-md-none">
+					                            <a href="{{ path ("app_panier") }}" class="btn btn-success">
+					                                <i class="bi bi-cart"></i>
+					                            </a>
+					                        </li> #}
 
-                        <li class="nav-item px-5 d-block d-md-none">
-                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
-                        </li>
+				</ul>
 
-                        {% else %}
+			</div>
+		</div>
+		<div class="justify-content-end d-none d-md-block">
+			<ul class="navbar-nav">
+				{% if app.user %}
 
-                        <li class="nav-item ms-md-5 px-5 d-block d-md-none">
-                            <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
-                        </li>
+					{% if is_granted('ROLE_CLIENT') %}
+						<li class="nav-item px-4">
+							<a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="user">{{ app.user.nom }}</a>
+						</li>
+					{% endif %}
 
-                        <li class="nav-item px-5 d-block d-md-none">
-                            <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
-                        </li>
+					{% if is_granted('ROLE_CHEF') %}
+						<li class="nav-item px-4">
+							<a class="textnav nav-link {{ app.current_route == 'app_gestion' ? 'active' : ''}}" href="{{ path ('app_gestion') }}" title="gestion">Gestion</a>
+						</li>
+					{% endif %}
 
-                        {% endif %}
+					<li class="nav-item px-4">
+						<a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="logout">Deconnexion</a>
+					</li>
 
-                        <li class="navbar-brand position-absolute end-0 d-block d-md-none">
-                            <a href="{{ path ("app_panier") }}" class="btn btn-success">
-                                <i class="bi bi-cart"></i>
-                            </a>
-                        </li> #}
+				{% else %}
 
-                    </ul>
-                    
-                </div>
-                </div>
-                <div class="justify-content-end d-none d-md-block">
-                <ul class="navbar-nav">
-                                            {% if app.user %}
+					<li class="nav-item ms-md-5 px-4">
+						<a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
+					</li>
 
-                    {% if is_granted('ROLE_CLIENT') %}
-                        <li class="nav-item px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="user">{{ app.user.nom }}</a>
-                        </li>
-                    {% endif %}
+					<li class="nav-item px-4">
+						<a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
+					</li>
 
-                    {% if is_granted('ROLE_CHEF') %}
-                        <li class="nav-item px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_gestion' ? 'active' : ''}}" href="{{ path ('app_gestion') }}" title="gestion">Gestion</a>
-                        </li>
-                    {% endif %}
+				{% endif %}
 
-                        <li class="nav-item px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="logout">Deconnexion</a>
-                        </li>
+				<li class="navbar-brand">
+					<a href="{{ path ("app_panier") }}" class="btn btn-success">
+						<i class="bi bi-cart"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div id="parent">
+		<div id="banniere" class="row g-0">
+			<video id="video" class="col-12" src="{{ asset ('img/video/video_the_district.webm') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
+		</div>
+		<div id="recherche" class="d-none d-sm-flex position-relative">
+			<form class="col-12" action="{{ path ("app_recherche") }}" role="search" method="GET">
+				<input class="form-control me-2" type="search" name="recherche" placeholder="Recherche..." aria-label="Search">
+			</form>
+			<div class="position-absolute bottom-0 col-12">
+				{% include 'partiales/flash.html.twig' %}
+			</div>
+		</div>
+		{# <div class="position-absolute bottom-50 end-50">
+		                            {% include 'partiales/flash.html.twig' %}
+		                        </div> #}
+	</div>
+	<body>
+		<div class="d-flex">
+			{% include 'partiales/flash.html.twig' %}
+		</div>
+		{% block body %}{% endblock %}
 
-                        {% else %}
+		<footer class="p-0 g-0">
+			<nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
+				<div class="collapse navbar-collapse justify-content-center row" id="collapsibleNavbar2">
+					<ul class="navbar-nav col-12 justify-content-center mx-xl-2">
+						<li class="nav-item">
+							<a class="nav-link active" href="https://www.facebook.com/" title="Accueil"><img src="{{ asset ('img/social_media/icons8-facebook-48.png')}}" class="img-fluid align-text-top" alt="navinsta"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.instagram.com/" title="Categorie"><img src="{{ asset ('img/social_media/icons8-instagram-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navfb"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.tiktok.com/" title="Plat"><img src="{{ asset ('img/social_media/icons8-tiktok-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navtt"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.x.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-twitter-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navx"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.youtube.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-youtube-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_mention_legale') }}" title="mention_legales"><img src="{{ asset ('img/social_media/icons8-mention-legales-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_pdf') }}" title="politique_de_confidentialité"><img src="{{ asset ('img/social_media/icons8-politique-de-confidentialité-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</footer>
 
-                        <li class="nav-item ms-md-5 px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
-                        </li>
-
-                        <li class="nav-item px-4">
-                            <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
-                        </li>
-
-                        {% endif %}
-
-                        <li class="navbar-brand">
-                            <a href="{{ path ("app_panier") }}" class="btn btn-success">
-                                <i class="bi bi-cart"></i>
-                            </a>
-                        </li>
-                        </ul>
-                </div>
-            </nav>
-            <div id="parent">
-                <div id="banniere" class="row g-0">
-                    <video id="video" class="col-12" src="{{ asset ('img/video/video_the_district.webm') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
-                </div>
-                <div id="recherche" class="d-none d-sm-flex position-relative">
-                    <form class="col-12" action="{{ path ("app_recherche") }}" role="search" method="GET">
-                        <input class="form-control me-2" type="search" name="recherche" placeholder="Recherche..." aria-label="Search">
-                    </form>
-                    <div class="position-absolute bottom-0 col-12">
-                            {% include 'partiales/flash.html.twig' %}
-                    </div>
-                </div>
-                        {# <div class="position-absolute bottom-50 end-50">
-                            {% include 'partiales/flash.html.twig' %}
-                        </div> #}
-            </div>
-    <body>
-    <div class="d-flex">
-    {% include 'partiales/flash.html.twig' %}
-    </div>
-        {% block body %}{% endblock %}
-
-        <footer class="p-0 g-0">
-                    <nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
-                        <div class="collapse navbar-collapse justify-content-center row" id="collapsibleNavbar2">
-                            <ul class="navbar-nav col-12 justify-content-center mx-xl-2">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="https://www.facebook.com/" title="Accueil"><img src="{{ asset ('img/social_media/icons8-facebook-48.png')}}" class="img-fluid align-text-top" alt="navinsta"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="https://www.instagram.com/" title="Categorie"><img src="{{ asset ('img/social_media/icons8-instagram-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navfb"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="https://www.tiktok.com/" title="Plat"><img src="{{ asset ('img/social_media/icons8-tiktok-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navtt"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="https://www.x.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-twitter-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navx"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="https://www.youtube.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-youtube-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path ('app_mention_legale') }}" title="mention_legales"><img src="{{ asset ('img/social_media/icons8-mention-legales-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path ('app_pdf') }}" title="politique_de_confidentialité"><img src="{{ asset ('img/social_media/icons8-politique-de-confidentialité-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </footer>
-    
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
+

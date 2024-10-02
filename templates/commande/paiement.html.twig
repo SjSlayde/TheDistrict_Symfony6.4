@@ -1,42 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}Commande
+{% endblock %}
 
 {% block body %}
 
-        {{ form_errors(formPaiement) }}
+	{{ form_errors(formPaiement) }}
 
-        {{ form_start(formPaiement) }}
-        
-            <div class='container mt-4'>
-                <div class='row justify-content-center'>
-                    <h1>Donnée carte bancaire : </h1>
+	{{ form_start(formPaiement) }}
 
-                    <div class="col-12 mb-3">
-                        {{ form_row(formPaiement.numeros_de_carte) }}
-                    </div>
-                
-                    <div class="col-12 mb-3">
-                        {{ form_row(formPaiement.expiration) }}
-                    </div>
-                
-                    <div class="col-12 mb-3">
-                        {{ form_row(formPaiement.code_securite) }}
-                    </div>
-                
-                    <div class="col-12 mb-3">
-                        {{ form_row(formPaiement.nom_titulaire) }}
-                    </div>
+	<div class='container mt-4'>
+		<div class='row justify-content-center'>
+			<h1>Donnée carte bancaire :
+			</h1>
 
-                    <div class="col position-relative mt-5">
-                        <button type="submit" class="btn position-absolute bottom-0 end-0">Commander</button>
-                    </div>
+			<div class="col-12 mb-3">
+				{{ form_row(formPaiement.numeros_de_carte) }}
+			</div>
 
-                </div>
-            </div>
+			<div class="col-12 mb-3">
+				{{ form_row(formPaiement.expiration) }}
+			</div>
 
-        {{ form_end(formPaiement) }}
+			<div class="col-12 mb-3">
+				{{ form_row(formPaiement.code_securite) }}
+			</div>
 
-        {{ form_errors(formPaiement) }}
+			<div class="col-12 mb-3">
+				{{ form_row(formPaiement.nom_titulaire) }}
+			</div>
+
+			<div class="col position-relative mt-5">
+				<button type="submit" class="btn position-absolute bottom-0 end-0">Commander</button>
+			</div>
+
+		</div>
+	</div>
+
+	{{ form_end(formPaiement) }}
+
+	{{ form_errors(formPaiement) }}
 
 {% endblock %}
+

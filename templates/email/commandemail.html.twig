@@ -1,33 +1,42 @@
-<h1>Chère/Cher {{ user.nom }}</h1>
+<h1>Chère/Cher
+	{{ user.nom }}</h1>
 
-<p> Nous vous remercions pour votre récente commande sur The District. Nous sommes ravis de vous informer que votre commande a été bien reçue et est actuellement en cours de traitement.
-    Détails de la commande :</P>
-    
-        <P>Nom du client : {{ user.nom }} {{ user.prenom }}</P>
-        <P>Adresse de livraison : {{ user.adresse }}</P>
-        <P>Date de commande : le {{ datejour }} a {{ dateheure }}</P>
-        <p>Pour le Detail de votre commande :<a href="#">Click here</a></p>
-    
-    <P>Étapes suivantes :</P>
-    
-        <P>Préparation de votre commande : Nos équipes sont en train de préparer soigneusement vos articles pour garantir leur fraîcheur et leur qualité.</P>
-        <P>Expédition : Votre commande sera expédiée sous 15min .</P>
-        <P>Livraison : La livraison est estimée pour le {{ datelivraison }}.</P>
-    
-    <P>Paiement :</P>
-    
-    <P>Le montant total de votre commande est de {{ commande.total }} euros, qui a été débité de votre mode de paiement sélectionné.</P>
-    
-    <P>Si vous avez des questions ou besoin d'assistance supplémentaire, n'hésitez pas à nous contacter à reply@thedistrict.com . Notre équipe est à votre disposition pour vous aider.</P>
-    
-    <P>Nous vous remercions de votre confiance et espérons que vous apprécierez vos produits !</P>
-    
-    <P>Cordialement,</P>
-    
-    <P>The District</P>
+<p>
+	Nous vous remercions pour votre récente commande sur The District. Nous sommes ravis de vous informer que votre commande a été bien reçue et est actuellement en cours de traitement.
+	    Détails de la commande :</P>
+
+<P>Nom du client :
+	{{ user.nom }}
+	{{ user.prenom }}</P>
+<P>Adresse de livraison :
+	{{ user.adresse }}</P>
+<P>Date de commande : le
+	{{ datejour }}
+	a
+	{{ dateheure }}</P>
+<p>Pour le Detail de votre commande :<a href="#">Click here</a>
 </p>
 
-{# <p>
-    <a href="#">Click here to activate your account</a>
-    (this link is valid until {{ expiration_date|date('F jS') }})
-</p>  #}
+<P>Étapes suivantes :</P>
+
+<P>Préparation de votre commande : Nos équipes sont en train de préparer soigneusement vos articles pour garantir leur fraîcheur et leur qualité.</P>
+<P>Expédition : Votre commande sera expédiée sous 15min .</P>
+<P>Livraison : La livraison est estimée pour le
+	{{ datelivraison }}.</P>
+
+<P>Paiement :</P>
+
+<P>Le montant total de votre commande est de
+	{{ commande.total }}
+	euros, qui a été débité de votre mode de paiement sélectionné.</P>
+
+<P>Si vous avez des questions ou besoin d'assistance supplémentaire, n'hésitez pas à nous contacter à reply@thedistrict.com . Notre équipe est à votre disposition pour vous aider.</P>
+
+<P>Nous vous remercions de votre confiance et espérons que vous apprécierez vos produits !</P>
+
+<P>Cordialement,</P>
+
+<P>The District</P></p>{# <p>
+	    <a href="#">Click here to activate your account</a>
+	    (this link is valid until {{ expiration_date|date('F jS') }})
+	</p>  #}

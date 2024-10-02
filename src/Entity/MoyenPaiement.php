@@ -9,10 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Metadata\ApiResource; 
 
 #[ORM\Entity(repositoryClass: MoyenPaiementRepository::class)]
-#[ApiResource(
-    normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']],
-)]
+// #[ApiResource(
+//     normalizationContext: ['groups' => ['read']],
+//     denormalizationContext: ['groups' => ['write']],
+// )]
 class MoyenPaiement
 {
     #[ORM\Id]
