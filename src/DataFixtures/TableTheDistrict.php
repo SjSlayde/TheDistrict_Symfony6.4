@@ -90,7 +90,7 @@ class TableTheDistrict extends Fixture
 
         $plat5 = new Plat();
         $plat5->setLibelle('Tagliatelles au saumon');
-        $plat5->setImage('lasagnes_viande.jpg');
+        $plat5->setImage('tagliatelles_saumon.webp');
         $plat5->setPrix(12.00);
         $plat5->setDescription('Découvrez notre recette délicieuse de tagliatelles au saumon frais et à la crème qui qui vous assure un véritable régal!');
         $plat5->setActive(1);

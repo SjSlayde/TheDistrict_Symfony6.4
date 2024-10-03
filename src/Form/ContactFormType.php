@@ -45,7 +45,7 @@ class ContactFormType extends AbstractType
             ->add('Save', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-success color-315F72 rounded-pill col-1'
+                    'class' => 'btn btn-success color-315F72 rounded-pill'
                 ],
                 'row_attr' => [
                     'class' => 'd-flex justify-content-end'
