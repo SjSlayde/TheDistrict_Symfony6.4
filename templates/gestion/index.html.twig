@@ -16,16 +16,16 @@
 
 			{% for categorie in category %}
 
-				<div class="card col-md-4 flex-row mt-3 mx-md-5" style="width: 35rem">
-					<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="rounded-3 img-fluid m-auto" alt="{{ categorie.libelle }}'_food" style="width: 15rem; height: fit-content;">
+				<div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto row" style="width: 35rem">
+					<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top img-fluid imagecat" alt="{{ categorie.libelle }}">
 					<div class="card-body">
-						<h5 class="card-title mt-md-4">{{ categorie.libelle }}</h5>
+						<h5 class="card-title">{{ categorie.libelle | upper }}</h5>
 						<div class="d-flex justify-content-end">
 							<div class="d-none d-md-block position-absolute bottom-0 end-0">
 								<a href="{{ path ("app_gestion_categorie" , {id: categorie.id}) }}" class="btn btn-primary btn-lg">Modifier</a>
 								<a href="{{ path ("app_gestion_remove_categorie" , {id: categorie.id}) }}" class="btn btn-danger btn-lg">Supprimer</a>
 							</div>
-							<div class="d-none d-md-block position-absolute bottom-0 end-0">
+							<div class="d-block d-md-none position-absolute bottom-0 start-0">
 								<a href="{{ path ("app_gestion_categorie" , {id: categorie.id}) }}" class="btn btn-primary btn-lg">Modifier</a>
 								<a href="{{ path ("app_gestion_remove_categorie" , {id: categorie.id}) }}" class="btn btn-danger btn-lg">Supprimer</a>
 							</div>
@@ -70,4 +70,3 @@
 	</div>
 
 </div>{% endblock %}
-

@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -43,33 +44,41 @@
 						<a class="textnav nav-link {{ app.current_route == 'app_contact' ? 'active' : ''}}" href="{{ path ('app_contact') }}" title="contact">Contact</a>
 					</li>
 
-					{# {% if app.user %}
-					
-					                        <li class="nav-item px-5 d-block d-md-none">
-					                            <a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="contact">{{ app.user.nom }}</a>
-					                        </li>
-					
-					                        <li class="nav-item px-5 d-block d-md-none">
-					                            <a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="contact">Deconnexion</a>
-					                        </li>
-					
-					                        {% else %}
-					
-					                        <li class="nav-item ms-md-5 px-5 d-block d-md-none">
-					                            <a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
-					                        </li>
-					
-					                        <li class="nav-item px-5 d-block d-md-none">
-					                            <a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
-					                        </li>
-					
-					                        {% endif %}
-					
-					                        <li class="navbar-brand position-absolute end-0 d-block d-md-none">
-					                            <a href="{{ path ("app_panier") }}" class="btn btn-success">
-					                                <i class="bi bi-cart"></i>
-					                            </a>
-					                        </li> #}
+					{% if app.user %}
+
+					{% if is_granted('ROLE_CLIENT') %}
+						<li class="nav-item d-md-none d-block px-5">
+							<a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="user">{{ app.user.nom }}</a>
+						</li>
+					{% endif %}
+
+					{% if is_granted('ROLE_CHEF') %}
+						<li class="nav-item d-md-none d-block px-5">
+							<a class="textnav nav-link {{ app.current_route == 'app_gestion' ? 'active' : ''}}" href="{{ path ('app_gestion') }}" title="gestion">Gestion</a>
+						</li>
+					{% endif %}
+
+					<li class="nav-item d-md-none d-block px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="logout">Deconnexion</a>
+					</li>
+
+				{% else %}
+
+					<li class="nav-item d-md-none d-block ms-md-5 px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
+					</li>
+
+					<li class="nav-item d-md-none d-block px-5">
+						<a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
+					</li>
+
+				{% endif %}
+
+				<li class="navbar-brand d-md-none d-block px-5">
+					<a href="{{ path ("app_panier") }}" class="btn btn-success">
+						<i class="bi bi-cart"></i>
+					</a>
+				</li>
 
 				</ul>
 

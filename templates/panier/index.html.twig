@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<div class="container-fluid">
+	<div class="container-fluid g-0">
 
 		<section class="bg-ligth p-3">
 			<h1>
@@ -13,9 +13,9 @@
 			</h1>
 		</section>
 
-		<div class="row">
+		<div class="row justify-content-center">
 
-			<div class="col-9">
+			<div class="col-md-9 col ">
 
 				<table class="table table-hover">
 
@@ -27,7 +27,7 @@
 							<th class="text-center">Prix</th>
 							<th class="text-center">Quantité</th>
 							<th class="text-center">Total</th>
-							<th class="text-center"></th>
+							<th class="text-md-center"></th>
 						</tr>
 
 					</thead>
@@ -37,20 +37,20 @@
 						{% for element in dataPanier %}
 
 							<tr>
-								<td class="text-center align-middle"><img src="{{ asset ('img/food/' ~ element.plat.image) }}" alt="{{ element.plat.libelle }}-food" class="img-fluid imagepanier"></td>
+								<td class="text-center align-middle"><img src="{{ asset ('img/food/' ~ element.plat.image) }}" alt="{{ element.plat.libelle }}-food" class="d-none d-md-block img-fluid imagepanier"></td>
 								<td class="text-center align-middle">{{ element.plat.libelle }}</td>
 								<td class="text-center align-middle">{{ element.plat.prix }}
 									€</td>
 								<td class="text-center align-middle">{{ element.quantite }}</td>
 								<td class="text-center align-middle">{{ element.plat.prix * element.quantite }}
 									€</td>
-								<td class="text-center align-middle">
+								<td class="text-md-center align-md-middle">
 
 									<a href="{{ path ("app_ajout_panier" , {id: element.plat.id}) }}" class="btn btn-success">
 										<i class="bi bi-cart-plus"></i>
 									</a>
 
-									<a href="{{ path ("app_enlever_panier" , {id: element.plat.id}) }}" class="btn btn-warning mx-3">
+									<a href="{{ path ("app_enlever_panier" , {id: element.plat.id}) }}" class="btn btn-warning my-3 my-md-0 mx-md-3">
 										<i class="bi bi-cart-dash"></i>
 									</a>
 
@@ -74,9 +74,9 @@
 					<tfoot class="d-md-none">
 						<tr>
 							<td colspan="4">Total :</td>
-							<td class="text-end">{{ total }}
+							<td class="text-md-end">{{ total }}
 								€</td>
-							<td class="text-end">
+							<td class="text-md-end">
 								<a href="{{ path ("app_supprimer_panier_all") }}" class="btn btn-danger">
 									<i class="bi bi-cart-x"></i>
 								</a>
@@ -89,7 +89,7 @@
 			</div>
 
 
-			<div class="col-2 p-0">
+			<div class="col-2 d-md-block d-none p-0">
 				<table class="bg-light col-1 table">
 					<thead>
 						<tr>

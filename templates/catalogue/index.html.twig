@@ -4,66 +4,57 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid g-0 row">
+	<div class="container-fluid g-md-0 row justify-content-center">
 
-		<div class="col-2 p-0 d-md-none d-lg-block parallax"></div>
+		<div class="col-2 p-0 d-none d-md-block parallax"></div>
 
-		<div class="col-8">
+		<div class="col-md-8 col-12 ">
 
 			<div class="row justify-content-center mt-3">
 
-				<div class="fs-1 col-12 ms-md-5">Les Categories Favorites :</div>
+				<div class="fs-1 col-12">Les Categories Favorites :</div>
 
-				<div class="row">
 
 					{% for categorie in category %}
 
-						<div class="col-12 col-sm-6 col-md-4 mt-3">
-
-							<div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto row">
-								<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ('app_dishincat' , {categorie_id: categorie.id} ) }}">
-									<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top imagecat" alt="{{ categorie.libelle }}">
-									<div class="card-body">
-										<h5 class="card-title">{{ categorie.libelle | upper }}</h5>
-									</div>
-								</a>
-							</div>
+					<div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto row" style="width: 18rem;">
+					<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ('app_dishincat' , {categorie_id: categorie.id} ) }}">
+						<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top img-fluid imagecat" alt="{{ categorie.libelle }}">
+						<div class="card-body">
+							<h5 class="card-title">{{ categorie.libelle | upper }}</h5>
 						</div>
-
+					</a>
+				</div>
 					{% endfor %}
 
-				</div>
 			</div>
 
 			<div class="row justify-content-center mt-3">
 				<h2 class="fs-1 col-12 ms-md-5">Nos plats star :</h2>
-				<div class="row">
 
 					{% for plats in plat %}
 
-						<div class="col-12 col-sm-6 col-md-4 mt-3 justify-content-center">
-
-							<div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto row">
-								<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ("app_ajout_panier" , {id: plats.id}) }}">
-									<img src="{{ asset ('img/food/' ~ plats.image) }}" class="card-img-top imagecat" alt="{{ plats.libelle }}">
-									<div class="card-body">
-										<h5 class="card-title">{{ plats.libelle }}</h5>
-									</div>
-								</a>
-							</div>
-
+					<div class="card col-12 col-6 mt-3 mx-md-5" style="width: 30rem">
+					<img src="{{ asset ('img/food/' ~ plats.image) }}" class="rounded-3 img-fluid m-auto" alt="{{ plats.libelle }}'_food" style="width: fit-content; height: 10rem;">
+					<div class="card-body">
+						<h5 class="card-title mt-md-4">{{ plats.libelle }}</h5>
+						<p class="card-text">{{ plats.description }}</p>
+						<p class="card-text">{{ plats.prix}}</p>
+						<div class="d-flex justify-content-end">
+							<a href="{{ path ("app_ajout_panier" , {id: plats.id}) }}" class="d-none d-md-block btn btn-primary btn-lg position-absolute bottom-0 end-0">Ajouter</a>
+							<a href="{{ path ("app_ajout_panier" , {id: plats.id}) }}" class="d-block d-md-none btn btn-primary btn-lg position-absolute bottom-0 start-0">Ajouter</a>
 						</div>
+					</div>
+				</div>
 
 					{% endfor %}
 
-				</div>
 			</div>
 		</div>
 
 
-		<div class="col-2 p-0 d-md-none d-lg-block parallax"></div>
+		<div class="col-2 p-0 d-none d-md-block parallax"></div>
 	</div>
-
 
 {% endblock %}
 
