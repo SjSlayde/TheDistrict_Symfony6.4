@@ -11,7 +11,7 @@
 			{# <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newadresse', {nom: app.user.nom,prenom: app.user.prenom}) }}">
 			        <button class="btn btn-primary">Ajouter un adresse de livraison</button></a> #}
 
-			<div class="card col-4 text-bg-primary my-3">
+			<div class="card col-11 col-md-4 text-bg-primary my-3">
 				<div class="card-header">Adresse facturation</div>
 				<div class="card-body">
 					<h5 class="card-title">Nom :
@@ -35,7 +35,7 @@
 
 			{% for adresse in user.adresseLivraisons %}
 
-				<div class="card col-4 text-bg-primary my-3">
+				<div class="card col-11 col-md-4 text-bg-primary my-3">
 					<div class="card-header">Adresse livraison</div>
 					<div class="card-body">
 						<h5 class="card-title">Nom :
@@ -68,15 +68,14 @@
 		</div>
 
 		<div class="row justify-content-around">
-			<h2 class="col-12">mes cartes bancaire</h2>
+			<h2 class="col-12">mon Moyen de paiement</h2>
 			{# <a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col-4" href="{{ path ('app_newmoyenpaiement', {nom: app.user.nom,prenom: app.user.prenom}) }}">
 			        <button class="btn btn-primary">Ajouter une carte bancaire</button></a> #}
 
 			{% for paiement in user.moyenPaiements %}
 
-				<div class="card col-4 text-bg-primary my-3">
-					<div class="card-header">Moyen
-						{{ paiement.id }}
+				<div class="card col-11 col-md-4 text-bg-primary my-3">
+					<div class="card-header">Moyen de paiement
 					</div>
 					<div class="card-body">
 						<h5 class="card-title">Titulaire :
@@ -106,14 +105,14 @@
 		</div>
 
 		<div class="row">
-			<h2>Mes commandes</h2>
+			<h2 class="col-12">Mes commandes</h2>
 
-			<table class="table table-striped-columns">
+			<table class="col-md-12 col-11 table table-striped-columns">
 				<thead>
 					<tr>
 						<th class='text-center'>date de la commande</th>
 						<th class='text-center'>etat</th>
-						<th class='text-center'>detail commande</th>
+						<th class='text-center d-none d-md-block'>detail commande</th>
 						<th class='text-center'>total</th>
 					</tr>
 				</thead>
@@ -133,7 +132,7 @@
 								{% endif %}
 							</th>
 
-							<th class='text-start'>
+							<th class='text-start d-none d-md-block'>
 								<table class="table">
 									<thead>
 										<tr>
@@ -165,5 +164,4 @@
 
 		</div>
 	</div>
-</div>
 {% endblock %}

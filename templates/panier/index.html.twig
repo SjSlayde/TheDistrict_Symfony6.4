@@ -73,12 +73,12 @@
 
 					<tfoot class="d-md-none">
 						<tr>
-							<td colspan="4">Total :</td>
+							<td colspan="3">Total :</td>
 							<td class="text-md-end">{{ total }}
 								€</td>
-							<td class="text-md-end">
-								<a href="{{ path ("app_supprimer_panier_all") }}" class="btn btn-danger">
-									<i class="bi bi-cart-x"></i>
+							<td colspan="2">
+								<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ('app_commandeLivraison') }}">
+									<button class="btn btn-primary">Commander</button>
 								</a>
 							</td>
 						</tr>

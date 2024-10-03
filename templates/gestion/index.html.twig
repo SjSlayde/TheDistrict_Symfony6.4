@@ -7,7 +7,7 @@
 	<div class="container justify-content-center mt-3">
 
 		<div class="row">
-			<div class="fs-1 col-8 ms-md-5">Les Categories :</div>
+			<div class="fs-1 col-md-8 col-12 ms-md-5">Les Categories :</div>
 
 			<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col" href="{{ path ("app_gestion_categorie" , {id: 'new'}) }}">
 				<button class="btn btn-primary">Ajouter une categorie</button>
@@ -16,10 +16,11 @@
 
 			{% for categorie in category %}
 
-				<div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto row">
-					<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top img-fluid imagecat" alt="{{ categorie.libelle }}">
-					<div class="card-body">
-						<h5 class="card-title">{{ categorie.libelle | upper }}</h5>
+				<div class="card col-12 col-md-4 mt-3 mx-auto row" style="width: 18rem;">
+						<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top img-fluid imagecat" alt="{{ categorie.libelle }}">
+						<div class="card-body">
+							<h5 class="card-title">{{ categorie.libelle | upper }}</h5>
+						</div>
 						<div class="d-flex justify-content-end mt-5">
 							<div class="d-none d-md-block position-absolute bottom-0 end-0">
 								<a href="{{ path ("app_gestion_categorie" , {id: categorie.id}) }}" class="btn btn-primary btn-lg">Modifier</a>
@@ -30,7 +31,6 @@
 								<a href="{{ path ("app_gestion_remove_categorie" , {id: categorie.id}) }}" class="btn btn-danger btn-lg">Supprimer</a>
 							</div>
 						</div>
-					</div>
 				</div>
 
 			{% endfor %}
@@ -38,14 +38,14 @@
 		</div>
 
 		<div class="row mt-5">
-			<h2 class="fs-1 col-8 ms-md-5">Nos plats :</h2>
+			<h2 class="fs-1 col-md-8 col-12 ms-md-5">Nos plats :</h2>
 			<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center col" href="{{ path ("app_gestion_plat" , {id: 'new'}) }}">
 				<button class="btn btn-primary">Ajouter un plat</button>
 			</a>
 
 			{% for plats in plat %}
 
-				<div class="card col-md-4 flex-row mt-3 mx-md-5" style="width: 35rem">
+				<div class="card col-12 col-md-4 flex-row mt-3 mx-md-5" style="width: 35rem">
 					<img src="{{ asset ('img/food/' ~ plats.image) }}" class="rounded-3 img-fluid m-auto" alt="{{ plats.libelle }}'_food" style="width: 10rem; height: fit-content;">
 					<div class="card-body">
 						<h5 class="card-title mt-md-4">{{ plats.libelle }}</h5>

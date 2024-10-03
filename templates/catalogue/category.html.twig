@@ -13,7 +13,7 @@
 			{% for categorie in category %}
 
 
-				<div class="card col-12 col-sm-6 col-md-4 mt-3 mx-auto row" style="width: 18rem;">
+				<div class="card col-12 col-md-4 mt-3 mx-auto row" style="width: 18rem;">
 					<a class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover justify-content-center" href="{{ path ('app_dishincat' , {categorie_id: categorie.id} ) }}">
 						<img src="{{ asset ('img/category/' ~ categorie.image) }}" class="card-img-top img-fluid imagecat" alt="{{ categorie.libelle }}">
 						<div class="card-body">
