@@ -45,6 +45,7 @@ security:
          - { route: "app_gestion", roles: ROLE_CHEF }
          - { route: "app_gestion_plat", roles: ROLE_CHEF }
          - { route: "app_gestion_categorie", roles: ROLE_CHEF }
+         - { route: "app_gestion_utilisateur", roles: ROLE_ADMIN }
 
 when@test:
     security:

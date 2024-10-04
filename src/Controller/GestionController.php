@@ -8,6 +8,7 @@ use App\Form\CategorieFormType;
 use App\Form\PlatFormType;
 use App\Repository\CategorieRepository;
 use App\Repository\PlatRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,13 +20,15 @@ class GestionController extends AbstractController
 
     private $platRepo;
     private $categoryRepo;
+    private $utilisateurRepo;
     private $em;
 
-    public function __construct(CategorieRepository $categoryRepo, PlatRepository $platRepo,EntityManagerInterface $em)
+    public function __construct(CategorieRepository $categoryRepo, PlatRepository $platRepo,EntityManagerInterface $em,UtilisateurRepository $utilisateurRepo)
     {
         $this->categoryRepo = $categoryRepo;
         $this->platRepo = $platRepo;
         $this->em = $em;
+        $this->utilisateurRepo = $utilisateurRepo; 
 
     }
 
@@ -96,7 +99,7 @@ class GestionController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()){
-                        /**
+            /**
              * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
              */
             $file = $form->get('image')->getData();
@@ -142,4 +145,15 @@ class GestionController extends AbstractController
     
     return $this->redirectToRoute('app_gestion');
     }
+
+    #[Route(path : '/gestion/utilisateur',name: 'app_gestion_utilisateur')]
+    public function gestionUtilisateur(Request $request): Response
+    {
+
+        $utilisateurs = $this->utilisateurRepo->findAll();
+
+        return $this->render('gestion/gestionutilisateur.html.twig', [
+            'utilisateurs' => $utilisateurs,
+        ]);
+}
 }

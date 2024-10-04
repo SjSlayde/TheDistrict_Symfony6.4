@@ -10,7 +10,7 @@
 
 		<div class="col-md-8 col-12 mx-auto">
 
-			<div class="row justify-content-center">
+			<div class="row justify-content-center mx-auto">
 			<h2 class="fs-1 col-12 mt-4">Les Categories Favorites :</h2>
 
 				{% for categorie in category %}
@@ -26,7 +26,7 @@
 				{% endfor %}
 			</div>
 
-			<div class="row justify-content-center">
+			<div class="row justify-content-center mx-auto">
 				<h2 class="fs-1 col-12 mt-4">Nos plats star :</h2>
 
 				{% for plats in plat %}
@@ -47,9 +47,41 @@
 				{% endfor %}
 
 			</div>
+{% endblock %}
+{% block footer %}
+
+		<footer class="p-0 g-0">
+			<nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
+				<div class="collapse navbar-collapse justify-content-center row" id="collapsibleNavbar2">
+					<ul class="navbar-nav col-12 justify-content-center mx-xl-2">
+						<li class="nav-item">
+							<a class="nav-link active" href="https://www.facebook.com/" title="Accueil"><img src="{{ asset ('img/social_media/icons8-facebook-48.png')}}" class="img-fluid align-text-top" alt="navinsta"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.instagram.com/" title="Categorie"><img src="{{ asset ('img/social_media/icons8-instagram-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navfb"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.tiktok.com/" title="Plat"><img src="{{ asset ('img/social_media/icons8-tiktok-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navtt"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.x.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-twitter-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navx"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.youtube.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-youtube-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_mention_legale') }}" title="mention_legales"><img src="{{ asset ('img/social_media/icons8-mention-legales-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_pdf') }}" title="politique_de_confidentialité"><img src="{{ asset ('img/social_media/icons8-politique-de-confidentialité-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</footer>
 		</div>
 
 		<div class="col-2 p-0 d-none d-md-block parallax"></div>
 	</div>
+		{% endblock %}
 
-{% endblock %}

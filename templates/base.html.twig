@@ -126,7 +126,7 @@
 	</nav>
 	<div id="parent">
 		<div id="banniere" class="row g-0">
-			<video id="video" class="col-12" src="{{ asset ('img/video/video_the_district.webm') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
+			<video id="video" class="col-12" src="{{ asset ('img/video/pizza_promo_video.mp4') }}" style="width: 100vmax; height: 20vmax;" playsinline autoplay loop muted></video>
 		</div>
 		<div id="recherche" class="d-none d-sm-flex position-relative">
 			<form class="col-12" action="{{ path ("app_recherche") }}" role="search" method="GET">
@@ -145,6 +145,8 @@
 			{% include 'partiales/flash.html.twig' %}
 		</div>
 		{% block body %}{% endblock %}
+
+		{% block footer %}
 
 		<footer class="p-0 g-0">
 			<nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
@@ -175,6 +177,7 @@
 				</div>
 			</nav>
 		</footer>
+		{% endblock %}
 
 	</body>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

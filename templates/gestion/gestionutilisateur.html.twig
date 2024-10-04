@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}gestion du personnel
+{% endblock %}
+
+{% block body %}
+	<div class="container justify-content-center mt-3">
+
+		<table class="table table-hover">
+
+			<thead>
+
+				<tr>
+					<th class="text-center">Email :</th>
+					<th class="text-center">Roles :</th>
+					<th class="text-center">Nom :</th>
+					<th class="text-center">Prenom :</th>
+					<th class="text-center">Telephone :</th>
+					<th class="text-md-center">adresse :</th>
+                    <th class="text-md-center">Code postal :</th>
+                    <th class="text-md-center">Ville :</th>
+				</tr>
+
+			</thead>
+
+			<tbody>
+
+				{% for utilisateur in utilisateurs %}
+
+					<tr>
+						<td class="text-center align-middle">{{ utilisateur.email }}</td>
+						<td class="text-center align-middle">{% for role in utilisateur.roles %}
+                        {{ role }},
+                        {% endfor %}</td>
+						<td class="text-center align-middle">{{ utilisateur.nom }}</td>
+						<td class="text-center align-middle">{{ utilisateur.prenom }}</td>
+                        <td class="text-center align-middle">{{ utilisateur.telephone }}</td>
+                        <td class="text-center align-middle">{{ utilisateur.adresse }}</td>
+                        <td class="text-center align-middle">{{ utilisateur.cp }}</td>
+                        <td class="text-center align-middle">{{ utilisateur.ville }}</td>
+					</tr>
+
+				{% else %}
+
+					<tr>
+						<td colspan="6" class="text-center">Utilisateur introuvable</td>
+					</tr>
+
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+
+	</div>
+{% endblock %}
