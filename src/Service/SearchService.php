@@ -58,7 +58,7 @@ class SearchService
 
         // Parcourt chaque plat pour vérifier s'il contient le terme de recherche
         foreach ($plats as $plat) {
-            if (str_contains(strtolower($plat->getLibelle()), $recherche)) {
+            if (str_contains(strtolower($plat->getLibelle()), $recherche) or str_contains(strtolower($plat->getDescription()), $recherche)) {
                 // Ajoute le plat dans le tableau des résultats si le terme de recherche est trouvé
                 array_push($platrecherche, $plat);
             }
