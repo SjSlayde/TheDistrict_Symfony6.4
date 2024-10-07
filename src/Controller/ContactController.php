@@ -14,37 +14,37 @@ use App\Form\ContactFormType;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function index(Request $request,ContactManager  $cm): Response
+    public function index(Request $request, ContactManager $cm): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactFormType::class, $contact);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+
             $cm->setContact($contact);
 
-            $this->addFlash('success','Vous allez être contacter sous peu');
-        return $this->redirectToRoute('app_index');
-    } else {
-        return $this->render('contact/index.html.twig',[
-            'form' => $form
-        ]);
+            $this->addFlash('success', 'Vous allez être contacter sous peu');
+            return $this->redirectToRoute('app_index');
+        } else {
+            return $this->render('contact/index.html.twig', [
+                'form' => $form
+            ]);
+        }
     }
-}
 
-#[Route('/politique_de_confidentialite', name: 'app_pdf')]
-public function politiqueconf(): Response
-{
-   
-    return $this->render('contact/politique_de_confidentialite.html.twig');
-}
+    #[Route('/politique_de_confidentialite', name: 'app_pdf')]
+    public function politiqueconf(): Response
+    {
 
-#[Route('/mention_legale', name: 'app_mention_legale')]
-public function mention_legale(): Response
-{
-    
-    return $this->render('contact/mention_legale.html.twig');
-}
+        return $this->render('contact/politique_de_confidentialite.html.twig');
+    }
+
+    #[Route('/mention_legale', name: 'app_mention_legale')]
+    public function mention_legale(): Response
+    {
+
+        return $this->render('contact/mention_legale.html.twig');
+    }
 }
 
 

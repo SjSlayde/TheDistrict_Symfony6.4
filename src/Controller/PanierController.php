@@ -12,10 +12,11 @@ class PanierController extends AbstractController
 {
     private $PS;
 
-    public function __construct(PanierService $PanierService){
+    public function __construct(PanierService $PanierService)
+    {
         $this->PS = $PanierService;
     }
-    
+
     #[Route('/panier', name: 'app_panier')]
     public function index(): Response
     {
@@ -26,8 +27,10 @@ class PanierController extends AbstractController
 
         count($dataPanier);
 
-        return $this->render('panier/index.html.twig', compact("dataPanier", 
-        "total"));
+        return $this->render('panier/index.html.twig', compact(
+            "dataPanier",
+            "total"
+        ));
     }
 
     #[Route('/panier/ajout/{id}', name: 'app_ajout_panier', requirements: ['id' => '\d+'])]
@@ -41,7 +44,7 @@ class PanierController extends AbstractController
     #[Route('/panier/enlever/{id}', name: 'app_enlever_panier', requirements: ['id' => '\d+'])]
     public function RemoveOneQuantity(Plat $plat): Response
     {
-         $this->PS->RemoveOneQuantity($plat);
+        $this->PS->RemoveOneQuantity($plat);
 
         return $this->redirectToRoute('app_panier');
     }
@@ -60,7 +63,7 @@ class PanierController extends AbstractController
     {
         // $session->remove('panier');
         $this->PS->DeleteAllDish();
-        $this->addFlash('success','Votre panier a été vidées');
+        $this->addFlash('success', 'Votre panier a été vidées');
         return $this->redirectToRoute('app_panier');
     }
 }

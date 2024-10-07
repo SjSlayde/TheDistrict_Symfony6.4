@@ -13,11 +13,18 @@ use App\Repository\PlatRepository;
 class CatalogueController extends AbstractController
 {
 
-    private $categoryRepo;
-    private $platRepo;
+    private $categoryRepo; // Propriété pour le dépôt des catégories
+    private $platRepo;  // Propriété pour le dépôt des plats
 
+    /**
+     * Constructeur pour injecter les repositories de catégorie et de plat
+     * 
+     * @param CategorieRepository $categoryRepo - Dépôt pour accéder aux catégories
+     * @param PlatRepository $platRepo - Dépôt pour accéder aux plats
+     */
     public function __construct(CategorieRepository $categoryRepo, PlatRepository $platRepo)
     {
+        // Initialisation des dépôts
         $this->categoryRepo = $categoryRepo;
         $this->platRepo = $platRepo;
 
@@ -40,7 +47,7 @@ class CatalogueController extends AbstractController
     public function ShowDish(): Response
     {
         $plat = $this->platRepo->findAll();
-        
+
         return $this->render('catalogue/dish.html.twig', [
             'controller_name' => 'CatalogueController',
             'plat' => $plat,
@@ -48,7 +55,7 @@ class CatalogueController extends AbstractController
     }
 
 
-    #[Route('/plats/{categorie_id}', name: 'app_dishincat' , requirements: ['categorie_id' => '\d+'])]
+    #[Route('/plats/{categorie_id}', name: 'app_dishincat', requirements: ['categorie_id' => '\d+'])]
     public function ShowDishForCat(int $categorie_id): Response
     {
         $categorie = $this->categoryRepo->find($categorie_id);
@@ -56,7 +63,7 @@ class CatalogueController extends AbstractController
         $plat = $this->platRepo->findBy(['categorie' => $categorie->getId()]);
         return $this->render('catalogue/dishincat.html.twig', [
             'controller_name' => 'CatalogueController',
-            'plat'=> $plat,
+            'plat' => $plat,
             'categorie' => $categorie
         ]);
     }
@@ -74,23 +81,29 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/recherche', name: 'app_recherche')]
-    public function ShowRecherche(SearchService  $searchService): Response
+    public function ShowRecherche(SearchService $searchService): Response
     {
+        // Récupère la recherche depuis les paramètres GET
         $recherche = $_GET['recherche'];
 
-        if($searchService->SearchPlat($recherche) != null){
+        // Si la recherche correspond à un plat, on affiche les plats
+        if ($searchService->SearchPlat($recherche) != null) {
             $plat = $searchService->SearchPlat($recherche);
             return $this->render('catalogue/dish.html.twig', [
                 'controller_name' => 'CatalogueController',
                 'plat' => $plat,
             ]);
-        }elseif($searchService->SearchCategorie($recherche) != null){
+        }
+        // Si la recherche correspond à une catégorie, on affiche les catégories
+        elseif ($searchService->SearchCategorie($recherche) != null) {
             $category = $searchService->SearchCategorie($recherche);
             return $this->render('catalogue/category.html.twig', [
                 'controller_name' => 'CatalogueController',
                 'category' => $category,
             ]);
-        } else {
+        }
+        // Si rien n'est trouvé, on redirige vers la page d'accueil
+        else {
             return $this->redirectToRoute('app_index');
         }
     }
