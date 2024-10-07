@@ -63,7 +63,6 @@ class SearchService
                 array_push($platrecherche, $plat);
             }
         }
-
         return $platrecherche;  // Retourne les plats correspondants
     }
 
