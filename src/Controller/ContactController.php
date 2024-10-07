@@ -23,7 +23,7 @@ class ContactController extends AbstractController
 
             $cm->setContact($contact);
 
-            $this->addFlash('success', 'Vous allez être contacter sous peu');
+            $this->addFlash('success', 'Vous allez être contacté sous peu');
             return $this->redirectToRoute('app_index');
         } else {
             return $this->render('contact/index.html.twig', [

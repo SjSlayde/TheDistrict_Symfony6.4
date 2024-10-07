@@ -58,7 +58,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-            $this->addFlash('success', 'Votre compte client a biern été crées');
+            $this->addFlash('success', 'Votre compte client a bien été crée');
             return $security->login($user, UserFormAuthenticator::class, 'main');
         }
 
@@ -136,7 +136,7 @@ class RegistrationController extends AbstractController
             $em->persist($adresse);
             $em->flush();
 
-            $this->addFlash('success', 'Votre adresse de livraison a été ajoutées');
+            $this->addFlash('success', 'Votre adresse de livraison a été ajoutée');
 
             return $this->redirectToRoute('app_utilisateur', [
                 'nom' => $user->getNom(),
@@ -166,7 +166,7 @@ class RegistrationController extends AbstractController
             $em->persist($adresse);
             $em->flush();
 
-            $this->addFlash('success', 'Votre adresse de livraison a été changées');
+            $this->addFlash('success', 'Votre adresse de livraison a été changée');
 
             return $this->redirectToRoute('app_utilisateur', [
                 'nom' => $user->getNom(),
@@ -190,7 +190,7 @@ class RegistrationController extends AbstractController
         $em->remove($adresse);
         $em->flush();
 
-        $this->addFlash('success', 'Votre adresse de livraison a été supprimer');
+        $this->addFlash('success', 'Votre adresse de livraison a été supprimée');
 
         return $this->redirectToRoute('app_utilisateur', [
             'nom' => $user->getNom(),
@@ -215,7 +215,7 @@ class RegistrationController extends AbstractController
             $em->persist($MP);
             $em->flush();
 
-            $this->addFlash('success', 'Votre moyen de paiement a été ajoutées');
+            $this->addFlash('success', 'Votre moyen de paiement a été ajouté');
 
             return $this->redirectToRoute('app_utilisateur', [
                 'nom' => $user->getNom(),
@@ -245,7 +245,7 @@ class RegistrationController extends AbstractController
             $em->persist($MP);
             $em->flush();
 
-            $this->addFlash('success', 'Votre Moyen de paiment a été changées');
+            $this->addFlash('success', 'Votre Moyen de paiment a été changé');
 
             return $this->redirectToRoute('app_utilisateur', [
                 'nom' => $user->getNom(),
@@ -273,7 +273,7 @@ class RegistrationController extends AbstractController
         $em->remove($MP);
         $em->flush();
 
-        $this->addFlash('success', 'Votre moyen de paiement a été supprimer');
+        $this->addFlash('success', 'Votre moyen de paiement a été supprimé');
 
         return $this->redirectToRoute('app_utilisateur', [
             'nom' => $user->getNom(),
