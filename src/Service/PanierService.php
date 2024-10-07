@@ -76,6 +76,19 @@ class PanierService
 
             return $total;  // Retourne le total du panier
     }
+
+    public function getQuantite(): int {
+
+        $panier = $this->ShowPanier();  // Récupère le panier actuel
+        $nombrearticle = 0;
+
+        // Parcourt chaque élément du panier et calcule le nombre total d'article
+        foreach($panier as $id => $quantite){
+            $nombrearticle += $quantite; // Additionne la quantité 
+        }
+
+        return $nombrearticle;  // Retourne le total du panier
+}
     
         /**
      * Ajoute un plat dans le panier ou incrémente la quantité s'il existe déjà
