@@ -46,39 +46,43 @@
 
 					{% if app.user %}
 
-					{% if is_granted('ROLE_CLIENT') %}
+						{% if is_granted('ROLE_CLIENT') %}
+							<li class="nav-item d-md-none d-block px-5">
+								<a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="user">{{ app.user.nom }}</a>
+							</li>
+						{% endif %}
+
+						{% if is_granted('ROLE_CHEF') %}
+							<li class="nav-item d-md-none d-block px-5">
+								<a class="textnav nav-link {{ app.current_route == 'app_gestion' ? 'active' : ''}}" href="{{ path ('app_gestion') }}" title="gestion">Gestion</a>
+							</li>
+						{% endif %}
+
 						<li class="nav-item d-md-none d-block px-5">
-							<a class="textnav nav-link {{ app.current_route == 'app_utilisateur' ? 'active' : ''}}" href="{{ path ('app_utilisateur', {nom: app.user.nom,prenom: app.user.prenom}) }}" title="user">{{ app.user.nom }}</a>
+							<a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="logout">Deconnexion</a>
 						</li>
+
+					{% else %}
+
+						<li class="nav-item d-md-none d-block ms-md-5 px-5">
+							<a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
+						</li>
+
+						<li class="nav-item d-md-none d-block px-5">
+							<a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
+						</li>
+
 					{% endif %}
 
-					{% if is_granted('ROLE_CHEF') %}
-						<li class="nav-item d-md-none d-block px-5">
-							<a class="textnav nav-link {{ app.current_route == 'app_gestion' ? 'active' : ''}}" href="{{ path ('app_gestion') }}" title="gestion">Gestion</a>
-						</li>
-					{% endif %}
-
-					<li class="nav-item d-md-none d-block px-5">
-						<a class="textnav nav-link {{ app.current_route == 'app_logout' ? 'active' : ''}}" href="{{ path ('app_logout') }}" title="logout">Deconnexion</a>
+					<li class="navbar-brand d-md-none d-block px-5">
+						<a href="{{ path ("app_panier") }}" class="btn btn-success position-relative">
+							<i class="bi bi-cart"></i>
+							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								{{ panier.getQuantite }}
+								<span class="visually-hidden"></span>
+							</span>
+						</a>
 					</li>
-
-				{% else %}
-
-					<li class="nav-item d-md-none d-block ms-md-5 px-5">
-						<a class="textnav nav-link {{ app.current_route == 'app_login' ? 'active' : ''}}" href="{{ path ('app_login') }}" title="contact">Connexion</a>
-					</li>
-
-					<li class="nav-item d-md-none d-block px-5">
-						<a class="textnav nav-link {{ app.current_route == 'app_register' ? 'active' : ''}}" href="{{ path ('app_register') }}" title="contact">Nouveau utilisateur</a>
-					</li>
-
-				{% endif %}
-
-				<li class="navbar-brand d-md-none d-block px-5">
-					<a href="{{ path ("app_panier") }}" class="btn btn-success">
-						<i class="bi bi-cart"></i>
-					</a>
-				</li>
 
 				</ul>
 
@@ -117,8 +121,12 @@
 				{% endif %}
 
 				<li class="navbar-brand">
-					<a href="{{ path ("app_panier") }}" class="btn btn-success">
+					<a href="{{ path ("app_panier") }}" class="btn btn-success position-relative">
 						<i class="bi bi-cart"></i>
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+							{{ panier.getQuantite }}
+							<span class="visually-hidden"></span>
+						</span>
 					</a>
 				</li>
 			</ul>
@@ -136,9 +144,6 @@
 				{% include 'partiales/flash.html.twig' %}
 			</div>
 		</div>
-		{# <div class="position-absolute bottom-50 end-50">
-		                            {% include 'partiales/flash.html.twig' %}
-		                        </div> #}
 	</div>
 	<body>
 		<div class="d-flex">
@@ -148,38 +153,38 @@
 
 		{% block footer %}
 
-		<footer class="p-0 g-0">
-			<nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
-				<div class="collapse navbar-collapse justify-content-center row" id="collapsibleNavbar2">
-					<ul class="navbar-nav col-12 justify-content-center mx-xl-2">
-						<li class="nav-item">
-							<a class="nav-link active" href="https://www.facebook.com/" title="Accueil"><img src="{{ asset ('img/social_media/icons8-facebook-48.png')}}" class="img-fluid align-text-top" alt="navinsta"></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="https://www.instagram.com/" title="Categorie"><img src="{{ asset ('img/social_media/icons8-instagram-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navfb"></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="https://www.tiktok.com/" title="Plat"><img src="{{ asset ('img/social_media/icons8-tiktok-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navtt"></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="https://www.x.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-twitter-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navx"></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="https://www.youtube.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-youtube-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path ('app_mention_legale') }}" title="mention_legales"><img src="{{ asset ('img/social_media/icons8-mention-legales-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path ('app_pdf') }}" title="politique_de_confidentialité"><img src="{{ asset ('img/social_media/icons8-politique-de-confidentialité-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</footer>
+			<footer class="p-0 g-0">
+				<nav id="navbot" class="navbar navbar-expand bg-dark navbar-dark mt-3 rounded-pill rounded-xs-none container-fluid">
+					<div class="collapse navbar-collapse justify-content-center row" id="collapsibleNavbar2">
+						<ul class="navbar-nav col-12 justify-content-center mx-xl-2">
+							<li class="nav-item">
+								<a class="nav-link active" href="https://www.facebook.com/" title="Accueil"><img src="{{ asset ('img/social_media/icons8-facebook-48.png')}}" class="img-fluid align-text-top" alt="navinsta"></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://www.instagram.com/" title="Categorie"><img src="{{ asset ('img/social_media/icons8-instagram-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navfb"></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://www.tiktok.com/" title="Plat"><img src="{{ asset ('img/social_media/icons8-tiktok-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navtt"></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://www.x.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-twitter-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navx"></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://www.youtube.com/" title="contact"><img src="{{ asset ('img/social_media/icons8-youtube-48.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path ('app_mention_legale') }}" title="mention_legales"><img src="{{ asset ('img/social_media/icons8-mention-legales-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path ('app_pdf') }}" title="politique_de_confidentialité"><img src="{{ asset ('img/social_media/icons8-politique-de-confidentialité-50.png')}}" class="img-fluid d-inline-block align-text-top" alt="navyt"></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</footer>
 		{% endblock %}
 
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	</body>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
 
