@@ -11,23 +11,53 @@
 
 
 			<div class="col-md-6 col-12 mb-3">
-				{{ form_row(form.Nom) }}
+				<div class="form-control">
+					<i class="fa fa-calendar"></i> {{ form_label(form.Nom) }}
+					{{ form_widget(form.Nom) }}
+					<div class="form-error">
+						{{ form_errors(form.Nom) }}
+					</div>
+				</div>
 			</div>
 
 			<div class="col-md-6 col-12 mb-3">
-				{{ form_row(form.Prenom) }}
+				<div class="form-control">
+					<i class="fa fa-calendar"></i> {{ form_label(form.Prenom) }}
+					{{ form_widget(form.Prenom) }}
+					<div class="form-error">
+						{{ form_errors(form.Prenom) }}
+					</div>
+				</div>
 			</div>
 
 			<div class="col-md-6 col-12 mb-3">
-				{{ form_row(form.Email) }}
+				<div class="form-control">
+					<i class="fa fa-calendar"></i> {{ form_label(form.Email) }}
+					{{ form_widget(form.Email) }}
+					<div class="form-error">
+						{{ form_errors(form.Email) }}
+					</div>
+				</div>
 			</div>
 
 			<div class="col-md-6 col-12 mb-3">
-				{{ form_row(form.Telephone) }}
+				<div class="form-control">
+					<i class="fa fa-calendar"></i> {{ form_label(form.Telephone) }}
+					{{ form_widget(form.Telephone) }}
+					<div class="form-error">
+						{{ form_errors(form.Telephone) }}
+					</div>
+				</div>
 			</div>
 
 			<div class="col-12 mb-3">
-				{{ form_row(form.Demande) }}
+				<div class="form-control">
+					<i class="fa fa-calendar"></i> {{ form_label(form.Demande) }}
+					{{ form_widget(form.Demande) }}
+					<div class="form-error">
+						{{ form_errors(form.Demande) }}
+					</div>
+				</div>
 			</div>
 
 			<div class="mt-3 col-md-6 col-12 justify-content-center">
