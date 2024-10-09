@@ -6,6 +6,8 @@ use App\Repository\AdresseLivraisonRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AdresseLivraisonRepository::class)]
 // #[ApiResource(
@@ -21,27 +23,39 @@ class AdresseLivraison
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('read')]
+    #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^[A-Za-zÀ-ÖØ-öø-ÿ\'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ\'-]+)*$/', message: 'Nom invalide, le champ ne peut contenir de Caractère Spéciaux')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('read')]
+    #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^[A-Za-zÀ-ÖØ-öø-ÿ\'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ\'-]+)*$/', message: 'Prenom invalide, le champ ne peut contenir de Caractère Spéciaux')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 20)]
-    #[Groups('read')]
+    #[Groups(['read'])]
+    #[Constraints\Regex('/(0|\\+33|0033)[1-9][0-9]{8}/', message: 'numero de telephone invalide')]
+    #[Constraints\NotBlank()]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('read')]
+    #[Groups(['read'])]
+    #[Constraints\NotBlank()]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 20)]
-    #[Groups('read')]
+    #[Groups(['read'])]
+    #[Constraints\Length(max: 5)]
+    #[Constraints\Regex('/[0-9]{5}/', message: 'Code postal invalide')]
+    #[Constraints\NotBlank()]
     private ?string $cp = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('read')]
+    #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Length(min: 1)]
     private ?string $ville = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresseLivraisons')]

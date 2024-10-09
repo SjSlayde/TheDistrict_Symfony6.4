@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 #[ApiResource(
@@ -36,11 +37,14 @@ class Categorie
     #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^[A-Za-zÀ-ÖØ-öø-ÿ\'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ\'-]+)*$/', message: 'libellé invalide, le champ ne peut contenir de Caractère Spéciaux')]
     private ?string $libelle = null;
 
     // #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     #[Groups(['read','write'])]
+    #[Assert\Image()]
     private ?string $image = null;
 
     #[Assert\NotBlank]

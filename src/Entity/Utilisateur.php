@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups; 
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -30,6 +32,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Assert\Email(
+        message: 'l\'adresse email : {{ value }} n\'est pas valide.',
+    )]
     private ?string $email = null;
 
     /**
@@ -44,30 +50,44 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Length(min: 8)]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^[A-Za-zÀ-ÖØ-öø-ÿ\'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ\'-]+)*$/', message: 'Nom invalide, le champ ne peut contenir de Caractère Spéciaux')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^[A-Za-zÀ-ÖØ-öø-ÿ\'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ\'-]+)*$/', message: 'Prenom invalide, le champ ne peut contenir de Caractère Spéciaux')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 20)]
     #[Groups(['read'])]
+    #[Constraints\Regex('/(0|\\+33|0033)[1-9][0-9]{8}/', message: 'numero de telephone invalide')]
+    #[Constraints\NotBlank()]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 50)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 20)]
     #[Groups(['read'])]
+    #[Constraints\Length(max: 5)]
+    #[Constraints\Regex('/[0-9]{5}/', message: 'Code postal invalide')]
+    #[Constraints\NotBlank()]
     private ?string $cp = null;
 
     #[ORM\Column(length: 50)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Length(min: 1)]
     private ?string $ville = null;
 
     /**

@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Repository\MoyenPaiementRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints as Assert;
-use ApiPlatform\Metadata\ApiResource; 
 
 #[ORM\Entity(repositoryClass: MoyenPaiementRepository::class)]
 // #[ApiResource(
@@ -23,22 +23,29 @@ class MoyenPaiement
 
     #[ORM\Column(length: 20)]
     #[Groups('read')]
-    // #[Assert\CardScheme(
-    //     schemes: [Assert\CardScheme::MASTERCARD],
-    //     message: 'Votre carte de paiement est invalide(Mastercard obligatoire)',
-    // )]
+    // #[Constraints\Length(min: 16)]
+    #[Constraints\NotBlank()]
+    #[Assert\CardScheme(
+        schemes: [Assert\CardScheme::MASTERCARD],
+        message: 'Votre carte de paiement est invalide(Mastercard obligatoire)',
+    )]
     private ?string $numeros_de_carte = null;
 
     #[ORM\Column(length: 20)]
     #[Groups('read')]
+    #[Constraints\NotBlank()]
+    #[Constraints\Length(min: 4)]
     private ?string $expiration = null;
 
     #[ORM\Column(length: 20)]
     #[Groups('read')]
+    #[Constraints\NotBlank()]
+    #[Constraints\Length(min: 3)]
     private ?string $code_securite = null;
 
     #[ORM\Column(length: 255)]
     #[Groups('read')]
+    #[Constraints\NotBlank()]
     private ?string $nom_titulaire = null;
 
     #[ORM\ManyToOne(inversedBy: 'moyenPaiements')]

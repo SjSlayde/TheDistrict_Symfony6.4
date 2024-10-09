@@ -27,9 +27,9 @@ class MoyenPaimentFormType extends AbstractType
                     'message' => 'Veuillez entrer vos numéros de carte bancaire(promis je ne l\'est utilise pas)',
                 ]),
                 new Length([
-                    'min' => 6,
+                    'min' => 16,
                     'minMessage' => 'minimum {{ limit }} characters',
-                    'max' => 4096,
+                    'max' => 16,
                 ])]])
 
                 

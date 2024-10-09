@@ -53,7 +53,7 @@ class AdresseLivraisonType extends AbstractType
                     'label' => 'Veuillez accepter les conditions générales d\'utilisation',
                     'constraints' => [
                         new IsTrue([
-                            'message' => 'You should agree to our terms.',
+                            'message' => 'Veuillez accepter les termes d\'utilisation ',
                         ]),
                 ],
                 ])

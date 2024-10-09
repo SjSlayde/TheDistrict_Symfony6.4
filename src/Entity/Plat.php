@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 #[ApiResource(
@@ -37,20 +38,27 @@ class Plat
     #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^[A-Za-zÀ-ÖØ-öø-ÿ\'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ\'-]+)*$/', message: 'libellé invalide, le champ ne peut contenir de Caractère Spéciaux')]
     private ?string $libelle = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Length(min: 20,minMessage:'Veuillez rentrer minimum {{ limit }} caractere')]
     private ?string $description = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     #[Groups(['read'])]
+    #[Constraints\NotBlank()]
+    #[Constraints\Regex('/^\d+(.\d{2})?$/', message: 'Prix invalide, le champ ne peut contenir qu\'un nombre exemple : 12.00')]
     private ?string $prix = null;
 
     #[ORM\Column(length: 50)]
     #[Groups(['read','write'])]
+    #[Assert\Image()]
     private ?string $image = null;
 
     #[Assert\NotBlank]
